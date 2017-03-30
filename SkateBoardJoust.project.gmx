@@ -45,6 +45,9 @@
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_draw_layered_text.gml</script>
+  </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_complete</font>
     <font>fonts\fnt_title</font>

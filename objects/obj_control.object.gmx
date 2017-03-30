@@ -188,28 +188,15 @@ if (instance_number(obj_bat) &lt;= 0) {
     var text_x = v_x + v_width / 2;
     var complete_y = v_y + v_height / 4;
     var option_y = v_y + v_height * (3 / 4);
-
-    draw_set_color(make_color_rgb(128, 128, 0));
     
     draw_set_font(fnt_complete);
     
-    draw_text(text_x + 2, complete_y + 2, "Level Complete");
+    scr_draw_layered_text(text_x, complete_y, "Level Complete", 2, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
     
     draw_set_font(fnt_option);
     
-    draw_text(text_x + 1, option_y - 16, retry_text);
-    draw_text(text_x + 1, option_y + 1 + 16, exit_text);
-    
-    draw_set_color(make_color_rgb(196, 196, 0));
-    
-    draw_set_font(fnt_complete);
-    
-    draw_text(text_x - 2, complete_y - 2, "Level Complete");
-    
-    draw_set_font(fnt_option);
-    
-    draw_text(text_x - 1, option_y - 1 - 16, retry_text);
-    draw_text(text_x - 1, option_y - 1 + 16, exit_text);
+    scr_draw_layered_text(text_x, option_y - 16, retry_text, 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+    scr_draw_layered_text(text_x, option_y + 16, exit_text, 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
 }
 </string>
           </argument>
