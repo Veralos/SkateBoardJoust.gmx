@@ -49,12 +49,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//flicker++;
-flicker += 0.25;
-if (flicker &gt;= 30)
-    flicker = 0;
-    
-if (keyboard_check_pressed(vk_escape))
+            <string>if (keyboard_check_pressed(vk_escape))
     room_goto(rm_level_select);
     
 if (keyboard_check_pressed(ord("R"))) {
@@ -140,7 +135,6 @@ global.bats = 0;
 
 retry = true;
 complete = false;
-flicker = 0;
 
 audio_stop_sound(snd_fanfare);
 if (!audio_is_playing(global.music))
@@ -171,20 +165,6 @@ if (!audio_is_playing(global.music))
 var v_y = view_yview[0];
 var v_width = view_wview[0];
 var v_height = view_hview[0];
-
-if (v_y + v_height &gt; room_height/* &amp;&amp; flicker &gt;= 15*/) {
-    /*if (flicker &lt; 15)
-        draw_set_alpha(0.25 + 0.5 * flicker / 15)
-    else
-        draw_set_alpha(0.25 + 0.5 * (15 - (flicker - 15)) / 15);*/
-        
-    draw_set_alpha(0.5 + 0.25 * sin(flicker / 30 * 2 * pi));
-        
-    draw_set_color(c_white);
-    draw_rectangle(v_x, room_height, v_x + v_width, v_y + v_height, false);
-    
-    draw_set_alpha(1);
-}
 
 if (instance_number(obj_bat) &lt;= 0) {
     draw_set_color(c_black);
