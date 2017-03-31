@@ -67,6 +67,7 @@
     <object>objects\obj_level_select</object>
     <object>objects\obj_white</object>
     <object>objects\obj_fader</object>
+    <object>objects\obj_trail</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_display</room>

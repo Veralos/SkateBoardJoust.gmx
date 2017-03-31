@@ -202,6 +202,10 @@ sprite_w = -1;
 if (skate) {
     sprite = spr_boy_skate;
     sprite_w = spr_boy_skate_w;
+    
+    var trail = instance_create(round(x - 13 * facing) - 1, round(y + 13), obj_trail);
+    trail.xp = round(xprevious - x);
+    trail.yp = round(yprevious - y);
 }
 else {
     if (place_free(x, y + 1)) {
