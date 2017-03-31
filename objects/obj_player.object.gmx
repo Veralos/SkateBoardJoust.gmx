@@ -176,8 +176,16 @@ move_y += grav;
 if (move_y &gt; 2)
     move_y = 2;
     
+ramp = false
+    
 if (place_free(x + round(4 * move_x), y))
     x += round(4 * move_x);
+else if (place_free(x + round(4 * move_x / sqrt(2)), y - round(4 * abs(move_x) / sqrt(2)))) {
+    ramp = true;
+    
+    x += round(4 * move_x / sqrt(2));
+    y -= round(4 * abs(move_x) / sqrt(2));
+}
 else {
     move_contact_solid(90 - sign(move_x) * 90, round(move_x * 4));
     if (skate) {
@@ -227,7 +235,10 @@ else {
     else {
         sprite = spr_boy_run;
         sprite_w = spr_boy_run_w;
-        animate += abs(move_x) * 0.25;
+        if (ramp)
+            animate += abs(move_x) * 0.25 / sqrt(2);
+        else
+            animate += abs(move_x) * 0.25;
     }
 }
 </string>

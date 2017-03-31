@@ -22,6 +22,10 @@
   <sprites name="sprites">
     <sprite>sprites\spr_wall</sprite>
     <sprite>sprites\spr_wall_w</sprite>
+    <sprite>sprites\spr_ramp_l</sprite>
+    <sprite>sprites\spr_ramp_l_w</sprite>
+    <sprite>sprites\spr_ramp_r</sprite>
+    <sprite>sprites\spr_ramp_r_w</sprite>
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_boy</sprite>
     <sprite>sprites\spr_boy_w</sprite>
@@ -58,6 +62,8 @@
   </fonts>
   <objects name="objects">
     <object>objects\obj_wall</object>
+    <object>objects\obj_ramp_l</object>
+    <object>objects\obj_ramp_r</object>
     <object>objects\obj_player</object>
     <object>objects\obj_view</object>
     <object>objects\obj_draw_game</object>
