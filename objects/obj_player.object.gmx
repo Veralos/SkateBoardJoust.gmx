@@ -54,9 +54,10 @@ animate = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>audio_play_sound(snd_boy_die, 0, false);
+            <string>if (!scr_fading())
+    audio_play_sound(snd_boy_die, 0, false);
 
-obj_control.alarm[0] = 90;
+obj_control.alarm[0] = 60;
 
 for (var i = 0; i &lt; 5; i++) {
     var part = instance_create(x, y, obj_part);
@@ -98,8 +99,9 @@ if (skate) {
 var left_held = false;
 var right_held = false;
 var jump_pressed = false;
+var jump_released = false;
 
-if (instance_number(obj_bat) &gt; 0) {
+if (!scr_fading() &amp;&amp; instance_number(obj_bat) &gt; 0) {
     left_held = keyboard_check(vk_left);
     right_held = keyboard_check(vk_right);
     jump_pressed = keyboard_check_pressed(vk_up);

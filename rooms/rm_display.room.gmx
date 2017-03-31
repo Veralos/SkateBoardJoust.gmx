@@ -6,7 +6,7 @@
   <vsnap>32</vsnap>
   <hsnap>32</hsnap>
   <isometric>0</isometric>
-  <speed>30</speed>
+  <speed>60</speed>
   <persistent>0</persistent>
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
@@ -26,7 +26,7 @@
     <showViews>0</showViews>
     <deleteUnderlyingObj>0</deleteUnderlyingObj>
     <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
-    <page>1</page>
+    <page>0</page>
     <xoffset>-81</xoffset>
     <yoffset>-18</yoffset>
   </makerSettings>
@@ -53,6 +53,7 @@
   <instances>
     <instance objName="obj_draw_game" x="0" y="0" name="inst_4B97F8A5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_background" x="32" y="0" name="inst_4AE5C9CF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_fader" x="64" y="0" name="inst_9D2E487B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
