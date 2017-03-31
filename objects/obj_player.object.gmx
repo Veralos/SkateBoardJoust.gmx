@@ -176,10 +176,10 @@ move_y += grav;
 if (move_y &gt; 2)
     move_y = 2;
     
-if (place_free(x + 4 * move_x, y))
-    x += 4 * move_x;
+if (place_free(x + round(4 * move_x), y))
+    x += round(4 * move_x);
 else {
-    move_contact_solid(90 - sign(move_x) * 90, move_x * 4);
+    move_contact_solid(90 - sign(move_x) * 90, round(move_x * 4));
     if (skate) {
         audio_play_sound(snd_lose_board, 0, false);
         skate = false;
@@ -190,10 +190,10 @@ else {
     else
         move_x = 0;
 }
-if (place_free(x, y + 4 * move_y))
-    y += 4 * move_y;
+if (place_free(x, y + round(4 * move_y)))
+    y += round(4 * move_y);
 else {
-    move_contact_solid(180 + sign(move_y) * 90, move_y * 8);
+    move_contact_solid(180 + sign(move_y) * 90, round(move_y * 4));
     move_y = 0;
 }
 
@@ -220,7 +220,7 @@ else {
             sprite_w = spr_boy_jump_w;
         }
     }
-    else if (move_x == 0) {
+    else if (round(move_x * 4) == 0) {
         sprite = spr_boy;
         sprite_w = spr_boy_w;
     }
