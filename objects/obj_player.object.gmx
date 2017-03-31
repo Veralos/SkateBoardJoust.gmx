@@ -109,6 +109,8 @@ if (!scr_fading() &amp;&amp; instance_number(obj_bat) &gt; 0) {
 }
 
 if (!skate) {
+    obj_control.combo = 1;
+
     if (left_held &amp;&amp; move_x &gt; -1)
         move_x -= 0.25;
     if (right_held &amp;&amp; move_x &lt; 1)
@@ -251,6 +253,10 @@ else {
           <argument>
             <kind>1</kind>
             <string>if (skate) {
+    obj_control.points += 1000 * obj_control.combo;
+    var points = instance_create(x, y - 16, obj_score);
+    points.value = 1000 * obj_control.combo;
+    obj_control.combo++;
     with (other)
         instance_destroy();
 }

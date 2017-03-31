@@ -49,6 +49,7 @@
     <script>scripts\scr_draw_layered_text.gml</script>
     <script>scripts\scr_room_goto.gml</script>
     <script>scripts\scr_fading.gml</script>
+    <script>scripts\scr_time_string.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_complete</font>
@@ -68,6 +69,7 @@
     <object>objects\obj_white</object>
     <object>objects\obj_fader</object>
     <object>objects\obj_trail</object>
+    <object>objects\obj_score</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_display</room>
