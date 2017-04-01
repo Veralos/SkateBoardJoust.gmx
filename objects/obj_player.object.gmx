@@ -222,6 +222,8 @@ if (skate) {
     if (rail != noone &amp;&amp; rail.solid = true) {
         audio_play_sound(snd_grind, 0, false);
         
+        instance_create(x - 3 * facing, y + 16, obj_spark);
+        
         skate_x = x - 12 * facing - 1;
         skate_y = y + 17;
     

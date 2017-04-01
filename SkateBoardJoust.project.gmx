@@ -52,6 +52,7 @@
     <sprite>sprites\spr_bat_part_w</sprite>
     <sprite>sprites\spr_rail</sprite>
     <sprite>sprites\spr_rail_w</sprite>
+    <sprite>sprites\spr_spark</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -83,6 +84,7 @@
     <object>objects\obj_trail</object>
     <object>objects\obj_score</object>
     <object>objects\obj_rail</object>
+    <object>objects\obj_spark</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_display</room>
