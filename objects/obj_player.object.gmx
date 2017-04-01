@@ -32,6 +32,8 @@ facing = 1;
 skate = false;
 canjump = false;
 animate = 0;
+skate_x = x;
+skate_y = y;
 </string>
           </argument>
         </arguments>
@@ -207,6 +209,11 @@ else {
 
 //Animation
 
+skate_xp = skate_x;
+skate_yp = skate_y;
+skate_x = x - 13 * facing - 1;
+skate_y = y + 13;
+
 sprite = -1;
 sprite_w = -1;
 if (skate) {
@@ -214,6 +221,9 @@ if (skate) {
 
     if (rail != noone &amp;&amp; rail.solid = true) {
         audio_play_sound(snd_grind, 0, false);
+        
+        skate_x = x - 12 * facing - 1;
+        skate_y = y + 17;
     
         sprite = spr_boy_grind;
         sprite_w = spr_boy_grind_w;
@@ -223,9 +233,9 @@ if (skate) {
         sprite_w = spr_boy_skate_w;
     }
     
-    var trail = instance_create(round(x - 13 * facing) - 1, round(y + 13), obj_trail);
-    trail.xp = round(xprevious - x);
-    trail.yp = round(yprevious - y);
+    var trail = instance_create(skate_x, skate_y, obj_trail);
+    trail.xp = skate_xp;
+    trail.yp = skate_yp;
 }
 else {
     if (place_free(x, y + 1)) {

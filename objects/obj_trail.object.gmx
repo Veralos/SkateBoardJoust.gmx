@@ -77,11 +77,11 @@ if (alpha &lt;= 0)
 
 draw_set_color(c_yellow);
 
-draw_line_width(x, y, x + xp, y + yp, 3);
+draw_line_width(x, y, xp, yp, 3);
 
 draw_set_color(c_red);
 
-draw_line(x, y, x + xp, y + yp);
+draw_line(x, y, xp, yp);
 
 draw_set_alpha(1);
 </string>
