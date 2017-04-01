@@ -46,6 +46,7 @@ ds_list_add(level_list, rm_hills);
 ds_list_add(level_list, rm_plat2);
 ds_list_add(level_list, rm_abyss);
 ds_list_add(level_list, rm_void);
+ds_list_add(level_list, rm_grind);
 
 global.selected = 0;
 
@@ -54,6 +55,7 @@ music_list = ds_list_create();
 ds_list_add(music_list, snd_music1);
 ds_list_add(music_list, snd_music2);
 ds_list_add(music_list, snd_music3);
+ds_list_add(music_list, snd_music4);
 
 global.music = snd_music1;
 </string>

@@ -128,6 +128,9 @@ if (surface_exists(white_surface)) {
     with (obj_ramp_r)
         draw_sprite(spr_ramp_r_w, 0, x - global.offset_x, y - global.offset_y);
         
+    with (obj_rail)
+        draw_sprite(spr_rail_w, 0, x - global.offset_x, y - global.offset_y);
+        
     with (obj_bat)
         draw_sprite_ext(spr_bat_w, image_index, x - global.offset_x, y - global.offset_y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
         

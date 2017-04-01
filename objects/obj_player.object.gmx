@@ -210,8 +210,18 @@ else {
 sprite = -1;
 sprite_w = -1;
 if (skate) {
-    sprite = spr_boy_skate;
-    sprite_w = spr_boy_skate_w;
+    var rail = instance_place(x, y + 1, obj_rail);
+
+    if (rail != noone &amp;&amp; rail.solid = true) {
+        audio_play_sound(snd_grind, 0, false);
+    
+        sprite = spr_boy_grind;
+        sprite_w = spr_boy_grind_w;
+    }
+    else {
+        sprite = spr_boy_skate;
+        sprite_w = spr_boy_skate_w;
+    }
     
     var trail = instance_create(round(x - 13 * facing) - 1, round(y + 13), obj_trail);
     trail.xp = round(xprevious - x);
