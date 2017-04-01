@@ -66,10 +66,8 @@ if (!scr_fading()) {
 if (exit_pressed)
     scr_room_goto(rm_level_select);
     
-if (restart_pressed) {
-    with (obj_player)
-        instance_destroy();
-}
+if (restart_pressed &amp;&amp; !complete &amp;&amp; instance_number(obj_player) &gt; 0)
+    scr_room_goto(room);
 
 if (instance_number(obj_bat) &lt;= 0) {
     if (!complete) {
