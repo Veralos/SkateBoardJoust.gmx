@@ -20,6 +20,7 @@
     <sound>sound\snd_confirm</sound>
     <sound>sound\snd_lose_board</sound>
     <sound>sound\snd_grind</sound>
+    <sound>sound\snd_score</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_wall</sprite>

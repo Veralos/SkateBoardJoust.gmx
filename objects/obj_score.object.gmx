@@ -25,7 +25,36 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = 30;
+            <string>scale = 0;
+
+alarm[0] = 30;
+alarm[1] = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scale = 1 + 0.1 * (value / 1000 - 1);
+
+var sound = audio_play_sound(snd_score, 1, false);
+audio_sound_pitch(sound, scale);
 </string>
           </argument>
         </arguments>
@@ -98,7 +127,16 @@
 draw_set_valign(fa_middle);
 draw_set_font(fnt_option);
 
-scr_draw_layered_text(x, y, value, 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+var col1 = make_color_rgb(128, 128, 0);
+var col2 = make_color_rgb(196, 196, 0)
+
+draw_set_color(col1);
+
+draw_text_transformed(x + scale, y + scale, value, scale, scale, 0);
+
+draw_set_color(col2);
+
+draw_text_transformed(x - scale, y - scale, value, scale, scale, 0);
 </string>
           </argument>
         </arguments>

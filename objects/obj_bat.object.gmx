@@ -51,8 +51,8 @@ alarm[0] = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>audio_play_sound(snd_bat_die, 0, false);
-audio_sound_pitch(snd_bat_die, 5 - 4 * (instance_number(obj_bat) / global.bats));
+            <string>var sound = audio_play_sound(snd_bat_die, 0, false);
+audio_sound_pitch(sound, 5 - 4 * (instance_number(obj_bat) / global.bats));
 
 for (var i = 0; i &lt; 5; i++) {
     var part = instance_create(x, y, obj_part);
