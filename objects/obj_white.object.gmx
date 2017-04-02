@@ -103,14 +103,16 @@ var v_y = view_yview[0];
 var v_width = view_wview[0];
 var v_height = view_hview[0];
 
-if (v_y + v_height &gt; room_height) {
-    draw_set_alpha(0.5 + 0.25 * -cos(flicker * 2 * pi));
-        
-    draw_set_color(c_white);
+draw_set_alpha(0.5 + 0.25 * -cos(flicker * 2 * pi));
+draw_set_color(c_white);
+
+with (obj_death)
+    draw_rectangle(x, y, x + 15, y + 15, false);
+
+if (v_y + v_height &gt; room_height)
     draw_rectangle(v_x, room_height, v_x + v_width, v_y + v_height, false);
-    
-    draw_set_alpha(1);
-}
+
+draw_set_alpha(1);
 
 if (surface_exists(white_surface)) {
     global.offset_x = v_x;

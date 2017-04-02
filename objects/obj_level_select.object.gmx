@@ -47,6 +47,7 @@ ds_list_add(level_list, rm_plat2);
 ds_list_add(level_list, rm_abyss);
 ds_list_add(level_list, rm_void);
 ds_list_add(level_list, rm_grind);
+ds_list_add(level_list, rm_arena);
 
 global.selected = 0;
 

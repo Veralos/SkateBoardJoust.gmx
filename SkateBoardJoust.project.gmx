@@ -55,6 +55,7 @@
     <sprite>sprites\spr_rail</sprite>
     <sprite>sprites\spr_rail_w</sprite>
     <sprite>sprites\spr_spark</sprite>
+    <sprite>sprites\spr_death</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -89,6 +90,7 @@
     <object>objects\obj_rail</object>
     <object>objects\obj_spark</object>
     <object>objects\obj_tutorial</object>
+    <object>objects\obj_death</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_display</room>
@@ -109,6 +111,8 @@
     <room>rooms\rm_void</room>
     <room>rooms\rm_intro</room>
     <room>rooms\rm_grind</room>
+    <room>rooms\rm_beams</room>
+    <room>rooms\rm_arena</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
