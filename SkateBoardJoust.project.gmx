@@ -72,54 +72,47 @@
     <font>fonts\fnt_tutorial</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_fader</object>
-    <object>objects\obj_background</object>
+    <object>objects\obj_wall</object>
+    <object>objects\obj_ramp_l</object>
+    <object>objects\obj_ramp_r</object>
+    <object>objects\obj_player</object>
+    <object>objects\obj_view</object>
     <object>objects\obj_draw_game</object>
-    <objects name="menu">
-      <object>objects\obj_level_select</object>
-      <object>objects\obj_title</object>
-    </objects>
-    <objects name="game">
-      <object>objects\obj_wall</object>
-      <object>objects\obj_ramp_l</object>
-      <object>objects\obj_player</object>
-      <object>objects\obj_ramp_r</object>
-      <object>objects\obj_bat</object>
-      <object>objects\obj_part</object>
-      <object>objects\obj_control</object>
-      <object>objects\obj_score</object>
-      <object>objects\obj_rail</object>
-      <object>objects\obj_death</object>
-      <object>objects\obj_white</object>
-      <object>objects\obj_spark</object>
-      <object>objects\obj_tutorial</object>
-      <object>objects\obj_trail</object>
-    </objects>
+    <object>objects\obj_background</object>
+    <object>objects\obj_bat</object>
+    <object>objects\obj_part</object>
+    <object>objects\obj_control</object>
+    <object>objects\obj_level_select</object>
+    <object>objects\obj_white</object>
+    <object>objects\obj_fader</object>
+    <object>objects\obj_trail</object>
+    <object>objects\obj_score</object>
+    <object>objects\obj_rail</object>
+    <object>objects\obj_spark</object>
+    <object>objects\obj_tutorial</object>
+    <object>objects\obj_death</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_display</room>
-    <room>rooms\rm_title</room>
     <room>rooms\rm_level_select</room>
-    <rooms name="levels">
-      <room>rooms\rm_plat</room>
-      <room>rooms\rm_test</room>
-      <room>rooms\rm_bowl</room>
-      <room>rooms\rm_ledges</room>
-      <room>rooms\rm_tall</room>
-      <room>rooms\rm_waves</room>
-      <room>rooms\rm_intro</room>
-      <room>rooms\rm_grind</room>
-      <room>rooms\rm_beams</room>
-      <room>rooms\rm_arena</room>
-      <room>rooms\rm_basin</room>
-      <room>rooms\rm_downhill</room>
-      <room>rooms\rm_abyss</room>
-      <room>rooms\rm_layers</room>
-      <room>rooms\rm_hills</room>
-      <room>rooms\rm_void</room>
-      <room>rooms\rm_flat</room>
-      <room>rooms\rm_plat2</room>
-    </rooms>
+    <room>rooms\rm_test</room>
+    <room>rooms\rm_plat</room>
+    <room>rooms\rm_bowl</room>
+    <room>rooms\rm_flat</room>
+    <room>rooms\rm_ledges</room>
+    <room>rooms\rm_basin</room>
+    <room>rooms\rm_downhill</room>
+    <room>rooms\rm_tall</room>
+    <room>rooms\rm_plat2</room>
+    <room>rooms\rm_abyss</room>
+    <room>rooms\rm_waves</room>
+    <room>rooms\rm_layers</room>
+    <room>rooms\rm_hills</room>
+    <room>rooms\rm_void</room>
+    <room>rooms\rm_intro</room>
+    <room>rooms\rm_grind</room>
+    <room>rooms\rm_beams</room>
+    <room>rooms\rm_arena</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
