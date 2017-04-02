@@ -34,6 +34,7 @@ canjump = false;
 animate = 0;
 skate_x = x;
 skate_y = y;
+board_flash = 5;
 </string>
           </argument>
         </arguments>
@@ -95,7 +96,7 @@ if (skate) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (y &gt; room_height)
+            <string>if (y + 16 &gt; room_height)
     instance_destroy();
 
 var left_held = false;
@@ -139,11 +140,6 @@ if (jump_pressed) {
                 board.sprite_w = spr_board_w;
             }
         }
-        /*else if (!place_free(x - 1, y)) {
-            audio_play_sound(snd_jump, 0, false);
-            move_y = -1.6;
-            move_x = 1.6;
-        }*/
         else if (!place_free(x + facing, y)) {
             audio_play_sound(snd_jump, 0, false);
             move_y = -1.6;
@@ -154,6 +150,7 @@ if (jump_pressed) {
             skate = true;
             move_x = 2 * facing;
             move_y = -0.5;
+            board_flash = 0;
         }
         canjump = false;
     }
@@ -178,16 +175,16 @@ move_y += grav;
 if (move_y &gt; 2)
     move_y = 2;
     
-ramp = false
+ramp = false;
     
 if (place_free(x + round(4 * move_x), y))
     x += round(4 * move_x);
-else if (place_free(x + round(4 * move_x / sqrt(2)), y - round(4 * abs(move_x) / sqrt(2)))) {
+/*else if (place_free(x + round(4 * move_x / sqrt(2)), y - round(4 * abs(move_x) / sqrt(2)))) {
     ramp = true;
     
     x += round(4 * move_x / sqrt(2));
     y -= round(4 * abs(move_x) / sqrt(2));
-}
+}*/
 else {
     move_contact_solid(90 - sign(move_x) * 90, round(move_x * 4));
     if (skate) {
@@ -318,6 +315,10 @@ else
           <argument>
             <kind>1</kind>
             <string>draw_sprite_ext(sprite, animate, round(x), round(y), facing, image_yscale, image_angle, image_blend, image_alpha);
+if (board_flash &lt; 5) {
+    draw_sprite_ext(spr_board_flash, board_flash, round(x), round(y) + 13, facing * 1.25, image_yscale * 1.25, image_angle, image_blend, image_alpha);
+    board_flash += 0.5;
+}
 </string>
           </argument>
         </arguments>

@@ -41,9 +41,10 @@
     <sprite>sprites\spr_boy_run</sprite>
     <sprite>sprites\spr_boy_run_w</sprite>
     <sprite>sprites\spr_boy_skate</sprite>
+    <sprite>sprites\spr_board_flash</sprite>
+    <sprite>sprites\spr_boy_skate_w</sprite>
     <sprite>sprites\spr_boy_grind</sprite>
     <sprite>sprites\spr_boy_grind_w</sprite>
-    <sprite>sprites\spr_boy_skate_w</sprite>
     <sprite>sprites\spr_board</sprite>
     <sprite>sprites\spr_board_w</sprite>
     <sprite>sprites\sprite5</sprite>
@@ -67,6 +68,7 @@
     <font>fonts\fnt_complete</font>
     <font>fonts\fnt_title</font>
     <font>fonts\fnt_option</font>
+    <font>fonts\fnt_tutorial</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_wall</object>
@@ -86,6 +88,7 @@
     <object>objects\obj_score</object>
     <object>objects\obj_rail</object>
     <object>objects\obj_spark</object>
+    <object>objects\obj_tutorial</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_display</room>
