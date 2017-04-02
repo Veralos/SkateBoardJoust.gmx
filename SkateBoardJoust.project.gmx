@@ -5,57 +5,67 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound">
-    <sound>sound\snd_main_music</sound>
-    <sound>sound\snd_music1</sound>
-    <sound>sound\snd_music2</sound>
-    <sound>sound\snd_music3</sound>
-    <sound>sound\snd_music4</sound>
-    <sound>sound\snd_fanfare</sound>
-    <sound>sound\snd_select</sound>
-    <sound>sound\snd_error</sound>
-    <sound>sound\snd_jump</sound>
-    <sound>sound\snd_skate</sound>
-    <sound>sound\snd_bat_die</sound>
-    <sound>sound\snd_boy_die</sound>
-    <sound>sound\snd_confirm</sound>
-    <sound>sound\snd_lose_board</sound>
-    <sound>sound\snd_grind</sound>
-    <sound>sound\snd_score</sound>
+    <sounds name="music">
+      <sound>sound\snd_main_music</sound>
+      <sound>sound\snd_music1</sound>
+      <sound>sound\snd_music2</sound>
+      <sound>sound\snd_music3</sound>
+      <sound>sound\snd_music4</sound>
+    </sounds>
+    <sounds name="sounds">
+      <sound>sound\snd_fanfare</sound>
+      <sound>sound\snd_select</sound>
+      <sound>sound\snd_error</sound>
+      <sound>sound\snd_jump</sound>
+      <sound>sound\snd_skate</sound>
+      <sound>sound\snd_bat_die</sound>
+      <sound>sound\snd_boy_die</sound>
+      <sound>sound\snd_confirm</sound>
+      <sound>sound\snd_lose_board</sound>
+      <sound>sound\snd_grind</sound>
+      <sound>sound\snd_score</sound>
+    </sounds>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\spr_wall</sprite>
-    <sprite>sprites\spr_wall_w</sprite>
-    <sprite>sprites\spr_ramp_l</sprite>
-    <sprite>sprites\spr_ramp_l_w</sprite>
-    <sprite>sprites\spr_ramp_r</sprite>
-    <sprite>sprites\spr_ramp_r_w</sprite>
-    <sprite>sprites\spr_player</sprite>
-    <sprite>sprites\spr_boy</sprite>
-    <sprite>sprites\spr_boy_w</sprite>
-    <sprite>sprites\spr_boy_part</sprite>
-    <sprite>sprites\spr_boy_part_w</sprite>
-    <sprite>sprites\spr_boy_fall</sprite>
-    <sprite>sprites\spr_boy_fall_w</sprite>
-    <sprite>sprites\spr_boy_jump</sprite>
-    <sprite>sprites\spr_boy_jump_w</sprite>
-    <sprite>sprites\spr_boy_run</sprite>
-    <sprite>sprites\spr_boy_run_w</sprite>
-    <sprite>sprites\spr_boy_skate</sprite>
-    <sprite>sprites\spr_board_flash</sprite>
-    <sprite>sprites\spr_boy_skate_w</sprite>
-    <sprite>sprites\spr_boy_grind</sprite>
-    <sprite>sprites\spr_boy_grind_w</sprite>
-    <sprite>sprites\spr_board</sprite>
-    <sprite>sprites\spr_board_w</sprite>
-    <sprite>sprites\sprite5</sprite>
-    <sprite>sprites\spr_bat</sprite>
-    <sprite>sprites\spr_bat_w</sprite>
-    <sprite>sprites\spr_bat_part</sprite>
-    <sprite>sprites\spr_bat_part_w</sprite>
-    <sprite>sprites\spr_rail</sprite>
-    <sprite>sprites\spr_rail_w</sprite>
-    <sprite>sprites\spr_spark</sprite>
-    <sprite>sprites\spr_death</sprite>
+    <sprites name="player">
+      <sprite>sprites\spr_player</sprite>
+      <sprite>sprites\spr_boy</sprite>
+      <sprite>sprites\spr_boy_w</sprite>
+      <sprite>sprites\spr_boy_part</sprite>
+      <sprite>sprites\spr_boy_part_w</sprite>
+      <sprite>sprites\spr_boy_fall</sprite>
+      <sprite>sprites\spr_boy_fall_w</sprite>
+      <sprite>sprites\spr_boy_jump</sprite>
+      <sprite>sprites\spr_boy_jump_w</sprite>
+      <sprite>sprites\spr_boy_run</sprite>
+      <sprite>sprites\spr_boy_run_w</sprite>
+      <sprite>sprites\spr_boy_skate</sprite>
+      <sprite>sprites\spr_board_flash</sprite>
+      <sprite>sprites\spr_boy_skate_w</sprite>
+      <sprite>sprites\spr_boy_grind</sprite>
+      <sprite>sprites\spr_boy_grind_w</sprite>
+      <sprite>sprites\spr_board</sprite>
+      <sprite>sprites\spr_board_w</sprite>
+      <sprite>sprites\sprite5</sprite>
+      <sprite>sprites\spr_spark</sprite>
+    </sprites>
+    <sprites name="enemy">
+      <sprite>sprites\spr_bat</sprite>
+      <sprite>sprites\spr_bat_w</sprite>
+      <sprite>sprites\spr_bat_part</sprite>
+      <sprite>sprites\spr_bat_part_w</sprite>
+    </sprites>
+    <sprites name="level">
+      <sprite>sprites\spr_wall</sprite>
+      <sprite>sprites\spr_wall_w</sprite>
+      <sprite>sprites\spr_ramp_l</sprite>
+      <sprite>sprites\spr_ramp_l_w</sprite>
+      <sprite>sprites\spr_ramp_r</sprite>
+      <sprite>sprites\spr_ramp_r_w</sprite>
+      <sprite>sprites\spr_rail</sprite>
+      <sprite>sprites\spr_rail_w</sprite>
+      <sprite>sprites\spr_death</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -72,47 +82,51 @@
     <font>fonts\fnt_tutorial</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_wall</object>
-    <object>objects\obj_ramp_l</object>
-    <object>objects\obj_ramp_r</object>
-    <object>objects\obj_player</object>
-    <object>objects\obj_view</object>
+    <objects name="game">
+      <object>objects\obj_wall</object>
+      <object>objects\obj_ramp_l</object>
+      <object>objects\obj_ramp_r</object>
+      <object>objects\obj_player</object>
+      <object>objects\obj_view</object>
+      <object>objects\obj_bat</object>
+      <object>objects\obj_part</object>
+      <object>objects\obj_control</object>
+      <object>objects\obj_white</object>
+      <object>objects\obj_trail</object>
+      <object>objects\obj_rail</object>
+      <object>objects\obj_spark</object>
+      <object>objects\obj_score</object>
+      <object>objects\obj_death</object>
+      <object>objects\obj_tutorial</object>
+    </objects>
     <object>objects\obj_draw_game</object>
     <object>objects\obj_background</object>
-    <object>objects\obj_bat</object>
-    <object>objects\obj_part</object>
-    <object>objects\obj_control</object>
     <object>objects\obj_level_select</object>
-    <object>objects\obj_white</object>
     <object>objects\obj_fader</object>
-    <object>objects\obj_trail</object>
-    <object>objects\obj_score</object>
-    <object>objects\obj_rail</object>
-    <object>objects\obj_spark</object>
-    <object>objects\obj_tutorial</object>
-    <object>objects\obj_death</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_display</room>
     <room>rooms\rm_level_select</room>
-    <room>rooms\rm_test</room>
-    <room>rooms\rm_plat</room>
-    <room>rooms\rm_bowl</room>
-    <room>rooms\rm_flat</room>
-    <room>rooms\rm_ledges</room>
-    <room>rooms\rm_basin</room>
-    <room>rooms\rm_downhill</room>
-    <room>rooms\rm_tall</room>
-    <room>rooms\rm_plat2</room>
-    <room>rooms\rm_abyss</room>
-    <room>rooms\rm_waves</room>
-    <room>rooms\rm_layers</room>
-    <room>rooms\rm_hills</room>
-    <room>rooms\rm_void</room>
-    <room>rooms\rm_intro</room>
-    <room>rooms\rm_grind</room>
-    <room>rooms\rm_beams</room>
-    <room>rooms\rm_arena</room>
+    <rooms name="levels">
+      <room>rooms\rm_test</room>
+      <room>rooms\rm_plat</room>
+      <room>rooms\rm_flat</room>
+      <room>rooms\rm_bowl</room>
+      <room>rooms\rm_ledges</room>
+      <room>rooms\rm_basin</room>
+      <room>rooms\rm_downhill</room>
+      <room>rooms\rm_tall</room>
+      <room>rooms\rm_plat2</room>
+      <room>rooms\rm_abyss</room>
+      <room>rooms\rm_waves</room>
+      <room>rooms\rm_layers</room>
+      <room>rooms\rm_hills</room>
+      <room>rooms\rm_void</room>
+      <room>rooms\rm_grind</room>
+      <room>rooms\rm_intro</room>
+      <room>rooms\rm_beams</room>
+      <room>rooms\rm_arena</room>
+    </rooms>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
