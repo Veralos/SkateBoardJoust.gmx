@@ -46,7 +46,6 @@
       <sprite>sprites\spr_boy_grind_w</sprite>
       <sprite>sprites\spr_board</sprite>
       <sprite>sprites\spr_board_w</sprite>
-      <sprite>sprites\sprite5</sprite>
       <sprite>sprites\spr_spark</sprite>
     </sprites>
     <sprites name="enemy">
@@ -87,7 +86,6 @@
       <object>objects\obj_ramp_l</object>
       <object>objects\obj_ramp_r</object>
       <object>objects\obj_player</object>
-      <object>objects\obj_view</object>
       <object>objects\obj_bat</object>
       <object>objects\obj_part</object>
       <object>objects\obj_control</object>
