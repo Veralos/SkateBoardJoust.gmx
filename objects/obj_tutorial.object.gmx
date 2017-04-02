@@ -29,7 +29,7 @@
 draw_set_valign(fa_middle);
 draw_set_font(fnt_tutorial);
 
-scr_draw_layered_text(x, y, text, 0.75, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+scr_draw_layered_text(x, y, text, 0.75, global.color1, global.color2);
 </string>
           </argument>
         </arguments>

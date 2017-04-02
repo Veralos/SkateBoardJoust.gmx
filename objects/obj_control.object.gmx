@@ -209,26 +209,26 @@ if (instance_number(obj_bat) &lt;= 0) {
     
     draw_set_font(fnt_complete);
     
-    scr_draw_layered_text(text_x, complete_y, "Level Complete", 2, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+    scr_draw_layered_text(text_x, complete_y, "Level Complete", 2, global.color1, global.color2);
     
     draw_set_font(fnt_option);
     
-    scr_draw_layered_text(text_x, v_y + v_height / 2 - 16, "Time: " + scr_time_string(time), 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
-    scr_draw_layered_text(text_x, v_y + v_height / 2 + 16, "Score: " + string(points), 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+    scr_draw_layered_text(text_x, v_y + v_height / 2 - 16, "Time: " + scr_time_string(time), 1, global.color1, global.color2);
+    scr_draw_layered_text(text_x, v_y + v_height / 2 + 16, "Score: " + string(points), 1, global.color1, global.color2);
     
-    scr_draw_layered_text(text_x, option_y - 16, retry_text, 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
-    scr_draw_layered_text(text_x, option_y + 16, exit_text, 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+    scr_draw_layered_text(text_x, option_y - 16, retry_text, 1, global.color1, global.color2);
+    scr_draw_layered_text(text_x, option_y + 16, exit_text, 1, global.color1, global.color2);
 }
 else {
     draw_set_font(fnt_option);
     draw_set_halign(fa_left);
     draw_set_valign(fa_middle);
     
-    scr_draw_layered_text(v_x + 8, v_y + 16, scr_time_string(time), 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+    scr_draw_layered_text(v_x + 8, v_y + 16, scr_time_string(time), 1, global.color1, global.color2);
     
     draw_set_halign(fa_right);
     
-    scr_draw_layered_text(v_x + v_width - 8, v_y + 16, points, 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+    scr_draw_layered_text(v_x + v_width - 8, v_y + 16, points, 1, global.color1, global.color2);
 }
 </string>
           </argument>
