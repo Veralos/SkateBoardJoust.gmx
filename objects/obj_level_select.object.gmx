@@ -210,8 +210,19 @@ draw_set_halign(fa_right);
 scr_draw_layered_text(title_x + 96, v_height - 40, "Up/Down#Enter#Escape", 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
 
 draw_set_halign(fa_center);
-draw_set_font(fnt_title);
-scr_draw_layered_text(title_x, title_y, "SKATE#BOARD#JOUST", 4, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+
+if (global.selected &lt;= global.levels_completed) {
+
+    scr_draw_layered_text(title_x, v_height * (2 / 5), "Best Time:#" + scr_time_string(36000), 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+    scr_draw_layered_text(title_x, v_height * (3 / 5), "Best Score:#" + string(0), 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+
+    draw_set_font(fnt_complete);
+    scr_draw_layered_text(title_x, v_y + 48, "Level " + string(global.selected + 1), 2, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+}
+else {
+    draw_set_font(fnt_complete);
+    scr_draw_layered_text(title_x, title_y, "LOCKED", 2, make_color_rgb(128, 128, 128), make_color_rgb(196, 196, 196));
+}
 </string>
           </argument>
         </arguments>
