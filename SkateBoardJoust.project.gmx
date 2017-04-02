@@ -100,10 +100,12 @@
     <object>objects\obj_draw_game</object>
     <object>objects\obj_background</object>
     <object>objects\obj_level_select</object>
+    <object>objects\obj_title</object>
     <object>objects\obj_fader</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_display</room>
+    <room>rooms\rm_title</room>
     <room>rooms\rm_level_select</room>
     <rooms name="levels">
       <room>rooms\rm_test</room>

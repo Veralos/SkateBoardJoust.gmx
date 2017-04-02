@@ -25,40 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ini_open("sbj_data")
-global.levels_completed = ini_read_real("data", "levels_completed", 0);
-ini_close();
+            <string>option_list = ds_list_create();
 
-level_list = ds_list_create();
+ds_list_add(option_list, "Play");
+ds_list_add(option_list, "Controls");
+ds_list_add(option_list, "Fullscreen");
+ds_list_add(option_list, "Sound");
+ds_list_add(option_list, "Music");
 
-ds_list_add(level_list, rm_intro);
-ds_list_add(level_list, rm_test);
-ds_list_add(level_list, rm_flat);
-ds_list_add(level_list, rm_waves);
-ds_list_add(level_list, rm_ledges);
-ds_list_add(level_list, rm_tall);
-ds_list_add(level_list, rm_basin);
-ds_list_add(level_list, rm_downhill);
-ds_list_add(level_list, rm_bowl);
-ds_list_add(level_list, rm_layers);
-ds_list_add(level_list, rm_plat);
-ds_list_add(level_list, rm_hills);
-ds_list_add(level_list, rm_plat2);
-ds_list_add(level_list, rm_abyss);
-ds_list_add(level_list, rm_void);
-ds_list_add(level_list, rm_grind);
-ds_list_add(level_list, rm_arena);
-
-global.selected = 0;
-
-music_list = ds_list_create();
-
-ds_list_add(music_list, snd_music1);
-ds_list_add(music_list, snd_music2);
-ds_list_add(music_list, snd_music3);
-ds_list_add(music_list, snd_music4);
-
-global.music = snd_music1;
+selected = 0;
 </string>
           </argument>
         </arguments>
@@ -94,27 +69,42 @@ if (!scr_fading()) {
 }
 
 
-if (up_pressed &amp;&amp; global.selected &gt; 0) {
+if (up_pressed &amp;&amp; selected &gt; 0) {
     audio_play_sound(snd_select, 0, false);
-    global.selected--;
+    selected--;
 }
-if (down_pressed &amp;&amp; global.selected &lt; ds_list_size(level_list) - 1) {
+if (down_pressed &amp;&amp; selected &lt; ds_list_size(option_list) - 1) {
     audio_play_sound(snd_select, 0, false);
-    global.selected++;
+    selected++;
 }
     
 if (confirm_pressed) {
-    if (global.selected &lt;= global.levels_completed) {
+    switch (selected) {
+        case 0:
+            audio_play_sound(snd_confirm, 0, false);
+            scr_room_goto(rm_level_select);
+            break;
+        case 2:
+            audio_play_sound(snd_confirm, 0, false);
+            with (obj_draw_game)
+                event_user(0);
+            break;
+        default:
+            audio_play_sound(snd_error, 0, false);
+            break;
+    }
+            
+    /*if (selected &lt;= global.levels_completed) {
         audio_play_sound(snd_confirm, 0, false);
-        global.music = ds_list_find_value(music_list, global.selected mod ds_list_size(music_list));
-        scr_room_goto(ds_list_find_value(level_list, global.selected));
+        global.music = ds_list_find_value(music_list, selected mod ds_list_size(music_list));
+        scr_room_goto(ds_list_find_value(option_list, selected));
     }
     else
-        audio_play_sound(snd_error, 0, false);
+        audio_play_sound(snd_error, 0, false);*/
 }
 
 if (quit_pressed)
-    scr_room_goto(rm_title);
+    game_end();
 </string>
           </argument>
         </arguments>
@@ -137,8 +127,7 @@ if (quit_pressed)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>audio_stop_sound(global.music);
-if (!audio_is_playing(snd_main_music))
+            <string>if (!audio_is_playing(snd_main_music))
     audio_play_sound(snd_main_music, 1, true);
 </string>
           </argument>
@@ -174,25 +163,25 @@ var v_height = view_hview[0];
 var draw_x = v_x + v_width * (3 / 4);
 var base_y = v_y + v_height / 2;
 
-for (var i = 0; i &lt; ds_list_size(level_list); i++) {
-    var draw_y = base_y + v_height / 8 * (i - global.selected);
+for (var i = 0; i &lt; ds_list_size(option_list); i++) {
+    var draw_y = base_y + v_height / 8 * (i - selected);
     
     var draw_string;
     var draw_col1;
     var draw_col2;
     
-    if (i &gt; global.levels_completed) {
-        draw_col1 = make_color_rgb(128, 128, 128);
-        draw_col2 = make_color_rgb(196, 196, 196);
-        draw_string = "LOCKED";
-    }
-    else {
-        draw_col1 = make_color_rgb(128, 128, 0);
-        draw_col2 = make_color_rgb(196, 196, 0);
-        draw_string = "Level " + string(i + 1);
+    draw_col1 = make_color_rgb(128, 128, 0);
+    draw_col2 = make_color_rgb(196, 196, 0);
+    draw_string = ds_list_find_value(option_list, i);
+    
+    if (i == 2) {
+        if (window_get_fullscreen())
+            draw_string += ": On";
+        else
+            draw_string += ": Off";
     }
     
-    if (i == global.selected)
+    if (i == selected)
         draw_string = "&gt; " + draw_string + " &lt;";
     
     scr_draw_layered_text(draw_x, draw_y, draw_string, 1, draw_col1, draw_col2);
@@ -203,7 +192,7 @@ var title_y = v_y + v_height / 2 - 36;
 
 draw_set_halign(fa_left);
 
-scr_draw_layered_text(title_x - 96, v_height - 40, "Select:#Confirm:#Go Back:", 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
+scr_draw_layered_text(title_x - 96, v_height - 40, "Select:#Confirm:#Quit:", 1, make_color_rgb(128, 128, 0), make_color_rgb(196, 196, 0));
 
 draw_set_halign(fa_right);
 
