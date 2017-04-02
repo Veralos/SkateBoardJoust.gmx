@@ -35,6 +35,21 @@ ds_list_add(option_list, "Music");
 
 selected = 0;
 
+sound_list = ds_list_create();
+
+ds_list_add(sound_list, snd_select);
+ds_list_add(sound_list, snd_error);
+ds_list_add(sound_list, snd_jump);
+ds_list_add(sound_list, snd_skate);
+ds_list_add(sound_list, snd_bat_die);
+ds_list_add(sound_list, snd_boy_die);
+ds_list_add(sound_list, snd_confirm);
+ds_list_add(sound_list, snd_lose_board);
+ds_list_add(sound_list, snd_grind);
+ds_list_add(sound_list, snd_score);
+
+sound_gain = 1;
+
 music_list = ds_list_create();
 
 ds_list_add(music_list, snd_main_music);
@@ -42,6 +57,7 @@ ds_list_add(music_list, snd_music1);
 ds_list_add(music_list, snd_music2);
 ds_list_add(music_list, snd_music3);
 ds_list_add(music_list, snd_music4);
+ds_list_add(music_list, snd_fanfare);
 
 music_gain = 1;
 </string>
@@ -98,6 +114,13 @@ if (confirm_pressed) {
             audio_play_sound(snd_confirm, 0, false);
             with (obj_draw_game)
                 event_user(0);
+            break;
+        case 3:
+            audio_play_sound(snd_confirm, 0, false);
+            sound_gain += 0.1;
+            if (sound_gain &gt; 1)
+                sound_gain = 0;
+            scr_list_gain(sound_list, sound_gain);
             break;
         case 4:
             audio_play_sound(snd_confirm, 0, false);
@@ -200,6 +223,9 @@ for (var i = 0; i &lt; ds_list_size(option_list); i++) {
                 draw_string += "On";
             else
                 draw_string += "Off";
+            break;
+        case 3:
+            draw_string += string(round(sound_gain * 100)) + "%";
             break;
         case 4:
             draw_string += string(round(music_gain * 100)) + "%";

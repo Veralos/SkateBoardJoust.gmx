@@ -11,9 +11,9 @@
       <sound>sound\snd_music2</sound>
       <sound>sound\snd_music3</sound>
       <sound>sound\snd_music4</sound>
+      <sound>sound\snd_fanfare</sound>
     </sounds>
     <sounds name="sounds">
-      <sound>sound\snd_fanfare</sound>
       <sound>sound\snd_select</sound>
       <sound>sound\snd_error</sound>
       <sound>sound\snd_jump</sound>
