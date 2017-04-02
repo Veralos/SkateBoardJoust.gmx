@@ -34,6 +34,16 @@ ds_list_add(option_list, "Sound");
 ds_list_add(option_list, "Music");
 
 selected = 0;
+
+music_list = ds_list_create();
+
+ds_list_add(music_list, snd_main_music);
+ds_list_add(music_list, snd_music1);
+ds_list_add(music_list, snd_music2);
+ds_list_add(music_list, snd_music3);
+ds_list_add(music_list, snd_music4);
+
+music_gain = 1;
 </string>
           </argument>
         </arguments>
@@ -88,6 +98,13 @@ if (confirm_pressed) {
             audio_play_sound(snd_confirm, 0, false);
             with (obj_draw_game)
                 event_user(0);
+            break;
+        case 4:
+            audio_play_sound(snd_confirm, 0, false);
+            music_gain += 0.1;
+            if (music_gain &gt; 1)
+                music_gain = 0;
+            scr_list_gain(music_list, music_gain);
             break;
         default:
             audio_play_sound(snd_error, 0, false);
@@ -174,11 +191,19 @@ for (var i = 0; i &lt; ds_list_size(option_list); i++) {
     draw_col2 = make_color_rgb(196, 196, 0);
     draw_string = ds_list_find_value(option_list, i);
     
-    if (i == 2) {
-        if (window_get_fullscreen())
-            draw_string += ": On";
-        else
-            draw_string += ": Off";
+    if (i &gt;= 2)
+        draw_string += ": ";
+    
+    switch (i) {
+        case 2:
+            if (window_get_fullscreen())
+                draw_string += "On";
+            else
+                draw_string += "Off";
+            break;
+        case 4:
+            draw_string += string(round(music_gain * 100)) + "%";
+            break;
     }
     
     if (i == selected)
