@@ -33,8 +33,6 @@ ds_list_add(option_list, "Jump/Skate");
 
 selected = 0;
 
-key_map = scr_generate_key_map();
-
 new_key = false;
 </string>
           </argument>
@@ -173,7 +171,7 @@ scr_draw_layered_text(title_x + 96, v_height - 40, "Up/Down#Enter#Escape", 1, gl
 draw_set_halign(fa_center);
 
 for (var i = 0; i &lt; ds_list_size(option_list); i++) {
-    var control_text = ds_list_find_value(option_list, i) + ": " + ds_map_find_value(key_map, ds_list_find_value(global.control_list, i));
+    var control_text = ds_list_find_value(option_list, i) + ": " + ds_map_find_value(global.key_map, ds_list_find_value(global.control_list, i));
     scr_draw_layered_text(title_x, v_y + v_height / 2 - 32 + 32 * i, control_text, 1, global.color1, global.color2);
 }
 

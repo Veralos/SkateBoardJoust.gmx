@@ -75,6 +75,8 @@ global.control_list = ds_list_create();
 ds_list_add(global.control_list, vk_left);
 ds_list_add(global.control_list, vk_right);
 ds_list_add(global.control_list, vk_up);
+
+global.key_map = scr_generate_key_map();
 </string>
           </argument>
         </arguments>
