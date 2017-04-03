@@ -90,13 +90,20 @@ if (instance_number(obj_bat) &lt;= 0) {
             ini_write_real("time", "level" + string(global.selected + 1), time);
             ini_close();
         }
+        
+        if (time &lt; ds_list_find_value(global.pro_time_list, global.selected))
+            pro_time = true;
             
-        if (points &gt; ds_list_find_value(global.best_score_list, global.selected))
+        if (points &gt; ds_list_find_value(global.best_score_list, global.selected)) {
             best_score = true;
             ds_list_replace(global.best_score_list, global.selected, points);
             ini_open("sbj_data");
             ini_write_real("score", "level" + string(global.selected + 1), points);
             ini_close();
+        }
+            
+        if (points &gt; ds_list_find_value(global.pro_score_list, global.selected))
+            pro_score = true;
     }
 
     if (up_pressed || down_pressed) {
@@ -169,6 +176,8 @@ points = 0;
 combo = 1;
 best_time = false;
 best_score = false;
+pro_time = false;
+pro_score = false;
 
 audio_stop_sound(snd_main_music);
 audio_stop_sound(snd_fanfare);
@@ -237,6 +246,11 @@ if (instance_number(obj_bat) &lt;= 0) {
         scr_draw_layered_text(v_x + v_width * (4/5), v_y + v_height / 2 - 16, "New Record!", 1, global.color1, global.color2);
     if (best_score)
         scr_draw_layered_text(v_x + v_width * (4/5), v_y + v_height / 2 + 16, "New Record!", 1, global.color1, global.color2);
+        
+    if (pro_time)
+        scr_draw_layered_text(v_x + v_width * (1/5), v_y + v_height / 2 - 16, "Expert Rank!", 1, global.color1, global.color2);
+    if (pro_score)
+        scr_draw_layered_text(v_x + v_width * (1/5), v_y + v_height / 2 + 16, "Expert Rank!", 1, global.color1, global.color2);
     
     scr_draw_layered_text(text_x, option_y - 16, retry_text, 1, global.color1, global.color2);
     scr_draw_layered_text(text_x, option_y + 16, exit_text, 1, global.color1, global.color2);
