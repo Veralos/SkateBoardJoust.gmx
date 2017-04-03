@@ -34,6 +34,11 @@ ds_list_add(option_list, "Jump/Skate");
 selected = 0;
 
 new_key = false;
+
+error_message = "";
+error1 = "Key is not supported";
+error2 = "Key is already in use";
+error_fade = 0;
 </string>
           </argument>
         </arguments>
@@ -97,7 +102,20 @@ else {
 
     else if (any_pressed) {
         var pressed = keyboard_key;
-        if scr_check_valid_key(pressed) {
+        var valid = true;
+        
+        if (!scr_check_valid_key(pressed)) {
+            valid = false;
+            error_message = error1;
+            error_fade = 120;
+        }
+        else if (!scr_check_unique_key(pressed)) {
+            valid = false;
+            error_message = error2;
+            error_fade = 120;
+        }
+        
+        if (valid) {
             audio_play_sound(snd_confirm, 0, false);
             ds_list_replace(global.control_list, selected, pressed);
             new_key = false;
@@ -106,6 +124,9 @@ else {
             audio_play_sound(snd_error, 0, false);
     }
 }
+
+if (error_fade &gt; 0)
+    error_fade--;
 </string>
           </argument>
         </arguments>
@@ -189,6 +210,13 @@ if (new_key) {
 
     var prompt = "Press new " + ds_list_find_value(option_list, selected) + " key";
     scr_draw_layered_text(v_x + v_width / 2, v_y + v_height / 4, prompt, 2, global.color1, global.color2);
+    
+    //draw_set_font(fnt_option);
+    
+    scr_draw_layered_text(v_x + v_width / 2, v_y + v_height * (3 / 4), "Press 'Escape' to cancel", 1, global.color1, global.color2);
+    
+    if (error_fade &gt; 0)
+        scr_draw_layered_text(v_x + v_width / 2, v_y + v_height / 2, error_message, 1, make_color_rgb(196, 0, 0), make_color_rgb(255, 0, 0));
 }
 </string>
           </argument>
