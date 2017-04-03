@@ -29,6 +29,9 @@
 global.levels_completed = ini_read_real("data", "levels_completed", 0);
 ini_close();
 
+if (global.levels_completed &lt; 0)
+    global.levels_completed = 0;
+
 level_list = ds_list_create();
 
 ds_list_add(level_list, rm_intro);
@@ -50,6 +53,20 @@ ds_list_add(level_list, rm_grind);
 ds_list_add(level_list, rm_arena);
 
 global.selected = 0;
+
+global.best_time_list = ds_list_create();
+global.best_score_list = ds_list_create();
+
+ini_open("sbj_data");
+for (var i = 0; i &lt; ds_list_size(level_list); i++) {
+    var time = clamp(ini_read_real("time", "level" + string(i + 1), 36000), 0, 36000);
+    ds_list_add(global.best_time_list, time);
+    var points = ini_read_real("score", "level" + string(i + 1), 0);
+    if (points &lt; 0)
+        points = 0;
+    ds_list_add(global.best_score_list, points);
+}
+ini_close();
 
 music_list = ds_list_create();
 
@@ -213,8 +230,8 @@ draw_set_halign(fa_center);
 
 if (global.selected &lt;= global.levels_completed) {
 
-    scr_draw_layered_text(title_x, v_height * (2 / 5), "Best Time:#" + scr_time_string(36000), 1, global.color1, global.color2);
-    scr_draw_layered_text(title_x, v_height * (3 / 5), "Best Score:#" + string(0), 1, global.color1, global.color2);
+    scr_draw_layered_text(title_x, v_height * (2 / 5), "Best Time:#" + scr_time_string(ds_list_find_value(global.best_time_list, global.selected)), 1, global.color1, global.color2);
+    scr_draw_layered_text(title_x, v_height * (3 / 5), "Best Score:#" + string(ds_list_find_value(global.best_score_list, global.selected)), 1, global.color1, global.color2);
 
     draw_set_font(fnt_complete);
     scr_draw_layered_text(title_x, v_y + 48, "Level " + string(global.selected + 1), 2, global.color1, global.color2);
