@@ -132,8 +132,10 @@ if (confirm_pressed) {
         audio_play_sound(snd_error, 0, false);
 }
 
-if (quit_pressed)
+if (quit_pressed) {
+    audio_play_sound(snd_cancel, 0, false);
     scr_room_goto(rm_title);
+}
 </string>
           </argument>
         </arguments>
