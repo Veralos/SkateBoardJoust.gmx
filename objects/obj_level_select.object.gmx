@@ -33,24 +33,26 @@ if (global.levels_completed &lt; 0)
     global.levels_completed = 0;
 
 level_list = ds_list_create();
+pro_time_list = ds_list_create();
+pro_score_list = ds_list_create();
 
-ds_list_add(level_list, rm_intro);
-ds_list_add(level_list, rm_test);
-ds_list_add(level_list, rm_flat);
-ds_list_add(level_list, rm_waves);
-ds_list_add(level_list, rm_ledges);
-ds_list_add(level_list, rm_tall);
-ds_list_add(level_list, rm_basin);
-ds_list_add(level_list, rm_downhill);
-ds_list_add(level_list, rm_bowl);
-ds_list_add(level_list, rm_layers);
-ds_list_add(level_list, rm_plat);
-ds_list_add(level_list, rm_hills);
-ds_list_add(level_list, rm_plat2);
-ds_list_add(level_list, rm_abyss);
-ds_list_add(level_list, rm_void);
-ds_list_add(level_list, rm_grind);
-ds_list_add(level_list, rm_arena);
+scr_add_level(rm_intro, 60 * 6, 14000);
+scr_add_level(rm_test, 60 * 7, 18000);
+scr_add_level(rm_flat, 60 * 5, 100000);
+scr_add_level(rm_waves, 60 * 8, 12000);
+scr_add_level(rm_ledges, 60 * 11, 12000);
+scr_add_level(rm_tall, 60 * 8, 13000);
+scr_add_level(rm_basin, 60 * 11, 17000);
+scr_add_level(rm_downhill, 60 * 8, 45000);
+scr_add_level(rm_bowl, 60 * 11, 38000);
+scr_add_level(rm_layers, 60 * 11, 17000);
+scr_add_level(rm_plat, 60 * 11, 13000);
+scr_add_level(rm_hills, 60 * 20, 14000);
+scr_add_level(rm_plat2, 60 * 7, 29000);
+scr_add_level(rm_abyss, 60 * 12, 25000);
+scr_add_level(rm_void, 60 * 30, 20000);
+scr_add_level(rm_grind, 60 * 9, 25000);
+scr_add_level(rm_arena, 60 * 18, 34000);
 
 global.selected = 0;
 
@@ -230,8 +232,11 @@ draw_set_halign(fa_center);
 
 if (global.selected &lt;= global.levels_completed) {
 
-    scr_draw_layered_text(title_x, v_height * (2 / 5), "Best Time:#" + scr_time_string(ds_list_find_value(global.best_time_list, global.selected)), 1, global.color1, global.color2);
-    scr_draw_layered_text(title_x, v_height * (3 / 5), "Best Score:#" + string(ds_list_find_value(global.best_score_list, global.selected)), 1, global.color1, global.color2);
+    scr_draw_layered_text(title_x - 72, v_height * (2 / 5), "Best Time:#" + scr_time_string(ds_list_find_value(global.best_time_list, global.selected)), 1, global.color1, global.color2);
+    scr_draw_layered_text(title_x - 72, v_height * (3 / 5), "Best Score:#" + string(ds_list_find_value(global.best_score_list, global.selected)), 1, global.color1, global.color2);
+    
+    scr_draw_layered_text(title_x + 72, v_height * (2 / 5), "Expert Time:#" + scr_time_string(ds_list_find_value(pro_time_list, global.selected)), 1, global.color1, global.color2);
+    scr_draw_layered_text(title_x + 72, v_height * (3 / 5), "Expert Score:#" + string(ds_list_find_value(pro_score_list, global.selected)), 1, global.color1, global.color2);
 
     draw_set_font(fnt_complete);
     scr_draw_layered_text(title_x, v_y + 48, "Level " + string(global.selected + 1), 2, global.color1, global.color2);
