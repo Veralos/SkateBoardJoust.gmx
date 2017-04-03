@@ -75,7 +75,6 @@ global.control_list = ds_list_create();
 ds_list_add(global.control_list, vk_left);
 ds_list_add(global.control_list, vk_right);
 ds_list_add(global.control_list, vk_up);
-ds_list_add(global.control_list, vk_escape);
 </string>
           </argument>
         </arguments>

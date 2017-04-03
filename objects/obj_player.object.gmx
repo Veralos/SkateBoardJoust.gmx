@@ -35,6 +35,9 @@ animate = 0;
 skate_x = x;
 skate_y = y;
 board_flash = 5;
+left_key = ds_list_find_value(global.control_list, 0);
+right_key = ds_list_find_value(global.control_list, 1);
+jump_key = ds_list_find_value(global.control_list, 2);
 </string>
           </argument>
         </arguments>
@@ -106,10 +109,10 @@ if (skate) {
     var jump_released = false;
     
     if (!scr_fading() &amp;&amp; instance_number(obj_bat) &gt; 0) {
-        left_held = keyboard_check(vk_left);
-        right_held = keyboard_check(vk_right);
-        jump_pressed = keyboard_check_pressed(vk_up);
-        jump_released = keyboard_check_released(vk_up);
+        left_held = keyboard_check(left_key);
+        right_held = keyboard_check(right_key);
+        jump_pressed = keyboard_check_pressed(jump_key);
+        jump_released = keyboard_check_released(jump_key);
     }
     
     if (!skate) {
