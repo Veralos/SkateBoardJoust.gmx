@@ -53,6 +53,7 @@ ds_list_add(sound_list, snd_score);
 ds_list_add(sound_list, snd_cancel);
 
 ini_open("sbj_data");
+
 sound_gain = clamp(ini_read_real("data", "sound_gain", 1), 0, 1);
 scr_list_gain(sound_list, sound_gain);
 
@@ -68,15 +69,34 @@ ds_list_add(music_list, snd_fanfare);
 music_gain = clamp(ini_read_real("data", "music_gain", 1), 0, 1);
 scr_list_gain(music_list, music_gain);
 audio_sound_gain(snd_grind, 0.2 * sound_gain, 0);
-ini_close();
+
+global.key_map = scr_generate_key_map();
 
 global.control_list = ds_list_create();
 
-ds_list_add(global.control_list, vk_left);
-ds_list_add(global.control_list, vk_right);
-ds_list_add(global.control_list, vk_up);
+ds_list_add(global.control_list, ini_read_real("controls", "key1", vk_left));
+ds_list_add(global.control_list, ini_read_real("controls", "key2", vk_right));
+ds_list_add(global.control_list, ini_read_real("controls", "key3", vk_up));
 
-global.key_map = scr_generate_key_map();
+var valid = true;
+for (var i = 0; i &lt; ds_list_size(global.control_list); i++) {
+    var key = ds_list_find_value(global.control_list, i);
+    if (!(scr_check_valid_key(key) &amp;&amp; scr_check_unique_key(key, i)))
+        valid = false;
+}
+
+if (!valid) {
+    ds_list_replace(global.control_list, 0, vk_left);
+    ds_list_replace(global.control_list, 1, vk_right);
+    ds_list_replace(global.control_list, 2, vk_up);
+    
+    for (var i = 0; i &lt; ds_list_size(global.control_list); i++)
+        ini_write_real("controls", "key" + string(i + 1), ds_list_find_value(global.control_list, i));
+}
+
+ini_close();
+
+
 </string>
           </argument>
         </arguments>

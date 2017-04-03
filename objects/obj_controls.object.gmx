@@ -109,7 +109,7 @@ else {
             error_message = error1;
             error_fade = 120;
         }
-        else if (!scr_check_unique_key(pressed)) {
+        else if (!scr_check_unique_key(pressed, selected)) {
             valid = false;
             error_message = error2;
             error_fade = 120;
@@ -119,6 +119,9 @@ else {
             audio_play_sound(snd_confirm, 0, false);
             ds_list_replace(global.control_list, selected, pressed);
             new_key = false;
+            ini_open("sbj_data");
+            ini_write_real("controls", "key" + string(selected + 1), pressed);
+            ini_close();
         }
         else
             audio_play_sound(snd_error, 0, false);
