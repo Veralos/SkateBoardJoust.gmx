@@ -27,8 +27,8 @@
     <deleteUnderlyingObj>-1</deleteUnderlyingObj>
     <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
     <page>0</page>
-    <xoffset>727</xoffset>
-    <yoffset>286</yoffset>
+    <xoffset>-29</xoffset>
+    <yoffset>-159</yoffset>
   </makerSettings>
   <backgrounds>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
@@ -216,12 +216,12 @@
     <instance objName="obj_wall" x="32" y="528" name="inst_07DF57CD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_player" x="64" y="688" name="inst_E45087E5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_control" x="80" y="96" name="inst_86CA74E6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_tutorial" x="256" y="608" name="inst_CD511810" locked="0" code="var jump_key = ds_map_find_value(global.key_map, ds_list_find_value(global.control_list, 2));&#xA;text = &quot;Press '&quot; + jump_key + &quot;' to jump.#Hold to jump higher.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_tutorial" x="448" y="560" name="inst_BF05AD71" locked="0" code="var jump_key = ds_map_find_value(global.key_map, ds_list_find_value(global.control_list, 2));&#xA;text = &quot;Press '&quot; + jump_key + &quot;' in the air#to use your skateboard.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_tutorial" x="1184" y="560" name="inst_F7739960" locked="0" code="var jump_key = ds_map_find_value(global.key_map, ds_list_find_value(global.control_list, 2));&#xA;text = &quot;Press '&quot; + jump_key + &quot;' in the air#while next to a wall#to wall jump.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_tutorial" x="1392" y="384" name="inst_4CAB2747" locked="0" code="text = &quot;Defeat all the enemies#to complete the level.&quot;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_tutorial" x="112" y="656" name="inst_5DCA3531" locked="0" code="var left_key = ds_map_find_value(global.key_map, ds_list_find_value(global.control_list, 0));&#xA;var right_key = ds_map_find_value(global.key_map, ds_list_find_value(global.control_list, 1));&#xA;text = &quot;Use '&quot; + left_key + &quot;' and#'&quot; + right_key +&quot;' to move.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_tutorial" x="1632" y="736" name="inst_3D3EA06C" locked="0" code="text = &quot;Don't fall#into this stuff.&quot;;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tutorial" x="256" y="608" name="inst_CD511810" locked="0" code="var jump_key = ds_map_find_value(global.key_map, ds_list_find_value(global.control_list, 2));&#xA;text = &quot;Press '&quot; + jump_key + &quot;' to jump. Hold to jump higher.&quot;;&#xA;width = 128;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tutorial" x="448" y="560" name="inst_BF05AD71" locked="0" code="var jump_key = ds_map_find_value(global.key_map, ds_list_find_value(global.control_list, 2));&#xA;text = &quot;Press '&quot; + jump_key + &quot;' in the air to use your skateboard.&quot;;&#xA;width = 196;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tutorial" x="1184" y="560" name="inst_F7739960" locked="0" code="var jump_key = ds_map_find_value(global.key_map, ds_list_find_value(global.control_list, 2));&#xA;text = &quot;Press '&quot; + jump_key + &quot;' in the air while next to a wall to wall jump.&quot;;&#xA;width = 128;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tutorial" x="1392" y="384" name="inst_4CAB2747" locked="0" code="text = &quot;Defeat all the enemies to complete the level.&quot;&#xA;width = 196;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tutorial" x="112" y="656" name="inst_5DCA3531" locked="0" code="var left_key = ds_map_find_value(global.key_map, ds_list_find_value(global.control_list, 0));&#xA;var right_key = ds_map_find_value(global.key_map, ds_list_find_value(global.control_list, 1));&#xA;text = &quot;Use '&quot; + left_key + &quot;' and '&quot; + right_key +&quot;' to move.&quot;;&#xA;width = 128;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tutorial" x="1632" y="736" name="inst_3D3EA06C" locked="0" code="text = &quot;Don't fall#into this stuff.&quot;;&#xA;width = 128;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="944" y="720" name="inst_E71F12E4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="960" y="720" name="inst_C5005213" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="960" y="704" name="inst_A8F59410" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

@@ -109,8 +109,8 @@ if (skate) {
     var jump_released = false;
     
     if (!scr_fading() &amp;&amp; instance_number(obj_bat) &gt; 0) {
-        left_held = keyboard_check(left_key);
-        right_held = keyboard_check(right_key);
+        left_held = keyboard_check_direct(left_key);
+        right_held = keyboard_check_direct(right_key);
         jump_pressed = keyboard_check_pressed(jump_key);
         jump_released = keyboard_check_released(jump_key);
     }
