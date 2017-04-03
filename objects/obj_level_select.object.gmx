@@ -45,7 +45,7 @@ scr_add_level(rm_tall, 60 * 8, 13000);
 scr_add_level(rm_basin, 60 * 11, 17000);
 scr_add_level(rm_downhill, 60 * 9, 45000);
 scr_add_level(rm_bowl, 60 * 11, 38000);
-scr_add_level(rm_layers, 60 * 11, 17000);
+scr_add_level(rm_layers, 60 * 11, 24000);
 scr_add_level(rm_plat, 60 * 11, 13000);
 scr_add_level(rm_hills, 60 * 20, 14000);
 scr_add_level(rm_plat2, 60 * 7, 29000);
