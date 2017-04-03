@@ -43,7 +43,7 @@ scr_add_level(rm_waves, 60 * 8, 12000);
 scr_add_level(rm_ledges, 60 * 11, 12000);
 scr_add_level(rm_tall, 60 * 8, 13000);
 scr_add_level(rm_basin, 60 * 11, 17000);
-scr_add_level(rm_downhill, 60 * 8, 45000);
+scr_add_level(rm_downhill, 60 * 9, 45000);
 scr_add_level(rm_bowl, 60 * 11, 38000);
 scr_add_level(rm_layers, 60 * 11, 17000);
 scr_add_level(rm_plat, 60 * 11, 13000);
@@ -209,6 +209,20 @@ for (var i = 0; i &lt; ds_list_size(level_list); i++) {
         draw_col1 = global.color1;
         draw_col2 = global.color2;
         draw_string = "Level " + string(i + 1);
+        
+        var time_index  = 0;
+        if (ds_list_find_value(global.best_time_list, i)  &lt; ds_list_find_value(global.pro_time_list, i))
+        time_index = 1;
+        
+        draw_sprite_ext(spr_stopwatch, time_index, draw_x + 68 + 1, draw_y + 1, 1, 1, 0, draw_col1, 1);
+        draw_sprite_ext(spr_stopwatch, time_index, draw_x + 68 - 1, draw_y - 1, 1, 1, 0, draw_col2, 1);
+        
+        var score_index  = 0;
+        if (ds_list_find_value(global.best_score_list, i) &gt; ds_list_find_value(global.pro_score_list, i))
+            score_index = 1;
+        
+        draw_sprite_ext(spr_star, score_index, draw_x + 96 + 1, draw_y + 1, 1, 1, 0, draw_col1, 1);
+        draw_sprite_ext(spr_star, score_index, draw_x + 96 - 1, draw_y - 1, 1, 1, 0, draw_col2, 1);
     }
     
     if (i == global.selected)
