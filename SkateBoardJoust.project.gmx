@@ -78,6 +78,8 @@
     <script>scripts\scr_time_string.gml</script>
     <script>scripts\scr_list_gain.gml</script>
     <script>scripts\scr_add_level.gml</script>
+    <script>scripts\scr_generate_key_map.gml</script>
+    <script>scripts\scr_check_valid_key.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_complete</font>

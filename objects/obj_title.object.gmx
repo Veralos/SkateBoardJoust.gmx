@@ -69,6 +69,13 @@ music_gain = clamp(ini_read_real("data", "music_gain", 1), 0, 1);
 scr_list_gain(music_list, music_gain);
 audio_sound_gain(snd_grind, 0.2 * sound_gain, 0);
 ini_close();
+
+global.control_list = ds_list_create();
+
+ds_list_add(global.control_list, vk_left);
+ds_list_add(global.control_list, vk_right);
+ds_list_add(global.control_list, vk_up);
+ds_list_add(global.control_list, vk_escape);
 </string>
           </argument>
         </arguments>
