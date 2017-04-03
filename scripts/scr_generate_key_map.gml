@@ -15,7 +15,7 @@ ds_map_add(key_map, vk_space, "Space");
 ds_map_add(key_map, vk_lshift, "Left Shift");
 ds_map_add(key_map, vk_rshift, "Right Shift");
 ds_map_add(key_map, vk_lcontrol, "Left Control");
-ds_map_add(key_map, vk_lcontrol, "Right Control");
+ds_map_add(key_map, vk_rcontrol, "Right Control");
 ds_map_add(key_map, vk_lalt, "Left Alt");
 ds_map_add(key_map, vk_ralt, "Right Alt");
 ds_map_add(key_map, vk_backspace, "Backspace");

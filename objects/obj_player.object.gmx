@@ -242,7 +242,7 @@ if (skate) {
     }
     else {
         if (place_free(x, y + 1)) {
-            if (move_y &gt; 0) {
+            if (move_y &gt;= 0) {
                 sprite = spr_boy_fall;
                 sprite_w = spr_boy_fall_w;
             }

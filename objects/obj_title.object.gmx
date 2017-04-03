@@ -51,6 +51,7 @@ ds_list_add(sound_list, snd_lose_board);
 ds_list_add(sound_list, snd_grind);
 ds_list_add(sound_list, snd_score);
 ds_list_add(sound_list, snd_cancel);
+ds_list_add(sound_list, snd_pause);
 
 ini_open("sbj_data");
 

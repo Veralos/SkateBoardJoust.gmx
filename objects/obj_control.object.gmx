@@ -106,10 +106,14 @@ else {
         if (exit_pressed) {
             retry = true;
             global.paused = !global.paused;
-            if (global.paused)
+            if (global.paused) {
                 audio_pause_sound(global.music);
-            else
+                audio_play_sound(snd_pause, 0, false);
+            }
+            else {
                 audio_resume_sound(global.music);
+                audio_play_sound(snd_cancel, 0, false);
+            }
         }
     }
 }
@@ -278,13 +282,13 @@ if (complete || global.paused) {
         
         draw_set_font(fnt_option)
         
-        var exit_text = "Exit";
+        var exit_text = "Exit Level";
         var retry_text = "Restart";
         
         if (retry)
             retry_text = "&gt; Restart &lt;";
         else
-            exit_text = "&gt; Exit &lt;";
+            exit_text = "&gt; Exit Level &lt;";
         
         scr_draw_layered_text(text_x, v_y + v_height * (2 / 3) - 16, retry_text, 1, global.color1, global.color2);
         scr_draw_layered_text(text_x, v_y + v_height * (2 / 3) + 16, exit_text, 1, global.color1, global.color2);
