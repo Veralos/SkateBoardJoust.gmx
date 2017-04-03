@@ -40,7 +40,7 @@ scr_add_level(rm_intro, 60 * 6, 23000);
 scr_add_level(rm_test, 60 * 7, 18000);
 scr_add_level(rm_flat, 60 * 5, 100000);
 scr_add_level(rm_waves, 60 * 8, 12000);
-scr_add_level(rm_ledges, 60 * 11, 12000);
+scr_add_level(rm_ledges, 60 * 11, 14000);
 scr_add_level(rm_tall, 60 * 8, 13000);
 scr_add_level(rm_basin, 60 * 11, 17000);
 scr_add_level(rm_downhill, 60 * 9, 45000);
@@ -214,8 +214,8 @@ for (var i = 0; i &lt; ds_list_size(level_list); i++) {
         if (ds_list_find_value(global.best_time_list, i)  &lt; ds_list_find_value(global.pro_time_list, i))
         time_index = 1;
         
-        draw_sprite_ext(spr_stopwatch, time_index, draw_x + 68 + 1, draw_y + 1, 1, 1, 0, draw_col1, 1);
-        draw_sprite_ext(spr_stopwatch, time_index, draw_x + 68 - 1, draw_y - 1, 1, 1, 0, draw_col2, 1);
+        draw_sprite_ext(spr_stopwatch, time_index, draw_x + 72 + 1, draw_y + 1, 1, 1, 0, draw_col1, 1);
+        draw_sprite_ext(spr_stopwatch, time_index, draw_x + 72 - 1, draw_y - 1, 1, 1, 0, draw_col2, 1);
         
         var score_index  = 0;
         if (ds_list_find_value(global.best_score_list, i) &gt; ds_list_find_value(global.pro_score_list, i))

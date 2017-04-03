@@ -63,12 +63,6 @@ if (!scr_fading()) {
     confirm_pressed = keyboard_check_pressed(vk_enter);
 }
 
-if (exit_pressed)
-    scr_room_goto(rm_level_select);
-    
-if (restart_pressed &amp;&amp; !complete &amp;&amp; instance_number(obj_player) &gt; 0)
-    scr_room_goto(room);
-
 if (instance_number(obj_bat) &lt;= 0) {
     if (!complete) {
         complete = true;
@@ -118,8 +112,24 @@ if (instance_number(obj_bat) &lt;= 0) {
             scr_room_goto(rm_level_select);
     }
 }
-else if (time &lt; 36000)
-    time++;
+else {
+    if (time &lt; 36000 &amp;&amp; !global.paused)
+        time++;
+    
+    if (instance_number(obj_player) &gt; 0) {
+        if (restart_pressed)
+            scr_room_goto(room);
+            
+        if (exit_pressed) {
+            global.paused = !global.paused;
+            if (global.paused)
+                audio_pause_sound(global.music);
+            else
+                audio_resume_sound(global.music);
+            //scr_room_goto(rm_level_select);
+        }
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -168,6 +178,7 @@ else if (time &lt; 36000)
             <string>instance_create(0, 0, obj_white);
 
 global.bats = 0;
+global.paused = false;
 
 retry = true;
 complete = false;
@@ -210,7 +221,7 @@ var v_y = view_yview[0];
 var v_width = view_wview[0];
 var v_height = view_hview[0];
 
-if (instance_number(obj_bat) &lt;= 0) {
+if (complete || global.paused) {
     draw_set_color(c_black);
     draw_set_alpha(0.5);
     
@@ -218,42 +229,66 @@ if (instance_number(obj_bat) &lt;= 0) {
     
     draw_set_alpha(1);
     
-    var exit_text = "Exit";
-    var retry_text = "Retry";
-    
-    if (retry)
-        retry_text = "&gt; Retry &lt;";
-    else
-        exit_text = "&gt; Exit &lt;";
-    
-    draw_set_halign(fa_center);
-    draw_set_valign(fa_middle);
-    
-    var text_x = v_x + v_width / 2;
-    var complete_y = v_y + v_height / 6;
-    var option_y = v_y + v_height * (5 / 6);
-    
-    draw_set_font(fnt_complete);
-    
-    scr_draw_layered_text(text_x, complete_y, "Level Complete", 2, global.color1, global.color2);
-    
-    draw_set_font(fnt_option);
-    
-    scr_draw_layered_text(text_x, v_y + v_height / 2 - 16, "Time: " + scr_time_string(time), 1, global.color1, global.color2);
-    scr_draw_layered_text(text_x, v_y + v_height / 2 + 16, "Score: " + string(points), 1, global.color1, global.color2);
-    
-    if (best_time)
-        scr_draw_layered_text(v_x + v_width * (4/5), v_y + v_height / 2 - 16, "New Record!", 1, global.color1, global.color2);
-    if (best_score)
-        scr_draw_layered_text(v_x + v_width * (4/5), v_y + v_height / 2 + 16, "New Record!", 1, global.color1, global.color2);
+    if (complete) {
+        var exit_text = "Exit";
+        var retry_text = "Retry";
         
-    if (pro_time)
-        scr_draw_layered_text(v_x + v_width * (1/5), v_y + v_height / 2 - 16, "Expert Rank!", 1, global.color1, global.color2);
-    if (pro_score)
-        scr_draw_layered_text(v_x + v_width * (1/5), v_y + v_height / 2 + 16, "Expert Rank!", 1, global.color1, global.color2);
-    
-    scr_draw_layered_text(text_x, option_y - 16, retry_text, 1, global.color1, global.color2);
-    scr_draw_layered_text(text_x, option_y + 16, exit_text, 1, global.color1, global.color2);
+        if (retry)
+            retry_text = "&gt; Retry &lt;";
+        else
+            exit_text = "&gt; Exit &lt;";
+        
+        draw_set_halign(fa_center);
+        draw_set_valign(fa_middle);
+        
+        var text_x = v_x + v_width / 2;
+        var complete_y = v_y + v_height / 6;
+        var option_y = v_y + v_height * (5 / 6);
+        
+        draw_set_font(fnt_complete);
+        
+        scr_draw_layered_text(text_x, complete_y, "Level Complete", 2, global.color1, global.color2);
+        
+        draw_set_font(fnt_option);
+        
+        scr_draw_layered_text(text_x, v_y + v_height / 2 - 16, "Time: " + scr_time_string(time), 1, global.color1, global.color2);
+        scr_draw_layered_text(text_x, v_y + v_height / 2 + 16, "Score: " + string(points), 1, global.color1, global.color2);
+        
+        if (best_time)
+            scr_draw_layered_text(v_x + v_width * (4/5), v_y + v_height / 2 - 16, "New Record!", 1, global.color1, global.color2);
+        if (best_score)
+            scr_draw_layered_text(v_x + v_width * (4/5), v_y + v_height / 2 + 16, "New Record!", 1, global.color1, global.color2);
+            
+        if (pro_time)
+            scr_draw_layered_text(v_x + v_width * (1/5), v_y + v_height / 2 - 16, "Expert Rank!", 1, global.color1, global.color2);
+        if (pro_score)
+            scr_draw_layered_text(v_x + v_width * (1/5), v_y + v_height / 2 + 16, "Expert Rank!", 1, global.color1, global.color2);
+        
+        scr_draw_layered_text(text_x, option_y - 16, retry_text, 1, global.color1, global.color2);
+        scr_draw_layered_text(text_x, option_y + 16, exit_text, 1, global.color1, global.color2);
+    }
+    else {
+        draw_set_halign(fa_center);
+        draw_set_valign(fa_middle);
+        draw_set_font(fnt_complete);
+        
+        var text_x = v_x + v_width / 2;
+        
+        scr_draw_layered_text(text_x, v_y + v_height / 3, "Paused", 2, global.color1, global.color2);
+        
+        draw_set_font(fnt_option)
+        
+        var exit_text = "Exit";
+        var retry_text = "Restart";
+        
+        if (retry)
+            retry_text = "&gt; Restart &lt;";
+        else
+            exit_text = "&gt; Exit &lt;";
+        
+        scr_draw_layered_text(text_x, v_y + v_height * (2 / 3) - 16, retry_text, 1, global.color1, global.color2);
+        scr_draw_layered_text(text_x, v_y + v_height * (2 / 3) + 16, exit_text, 1, global.color1, global.color2);
+    }
 }
 else {
     draw_set_font(fnt_option);

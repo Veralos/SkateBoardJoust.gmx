@@ -96,168 +96,170 @@ if (skate) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (y + 16 &gt; room_height)
-    instance_destroy();
-
-var left_held = false;
-var right_held = false;
-var jump_pressed = false;
-var jump_released = false;
-
-if (!scr_fading() &amp;&amp; instance_number(obj_bat) &gt; 0) {
-    left_held = keyboard_check(vk_left);
-    right_held = keyboard_check(vk_right);
-    jump_pressed = keyboard_check_pressed(vk_up);
-    jump_released = keyboard_check_released(vk_up);
-}
-
-if (!skate) {
-    obj_control.combo = 1;
-
-    if (left_held &amp;&amp; move_x &gt; -1)
-        move_x -= 0.25;
-    if (right_held &amp;&amp; move_x &lt; 1)
-        move_x += 0.25;
-        
-    if (move_x &lt; 0.125 &amp;&amp; move_x &gt; -0.125)
-        move_x = 0;
+            <string>if (!global.paused) {
+    if (y + 16 &gt; room_height)
+        instance_destroy();
     
-    if (move_x != 0) {
-        facing = sign(move_x);
-        move_x -= 0.125 * sign(move_x);
+    var left_held = false;
+    var right_held = false;
+    var jump_pressed = false;
+    var jump_released = false;
+    
+    if (!scr_fading() &amp;&amp; instance_number(obj_bat) &gt; 0) {
+        left_held = keyboard_check(vk_left);
+        right_held = keyboard_check(vk_right);
+        jump_pressed = keyboard_check_pressed(vk_up);
+        jump_released = keyboard_check_released(vk_up);
     }
-}
     
-if (jump_pressed) {
-    if (place_free(x, y + 1)) {
-        if (skate) {
-            if (canjump) {
+    if (!skate) {
+        obj_control.combo = 1;
+    
+        if (left_held &amp;&amp; move_x &gt; -1)
+            move_x -= 0.25;
+        if (right_held &amp;&amp; move_x &lt; 1)
+            move_x += 0.25;
+            
+        if (move_x &lt; 0.125 &amp;&amp; move_x &gt; -0.125)
+            move_x = 0;
+        
+        if (move_x != 0) {
+            facing = sign(move_x);
+            move_x -= 0.125 * sign(move_x);
+        }
+    }
+        
+    if (jump_pressed) {
+        if (place_free(x, y + 1)) {
+            if (skate) {
+                if (canjump) {
+                    audio_play_sound(snd_jump, 0, false);
+                    move_y = -1.6;
+                    skate = false;
+                    var board = instance_create(x, y, obj_part);
+                    board.sprite_index = spr_board;
+                    board.sprite_w = spr_board_w;
+                }
+            }
+            else if (!place_free(x + facing, y)) {
                 audio_play_sound(snd_jump, 0, false);
                 move_y = -1.6;
-                skate = false;
-                var board = instance_create(x, y, obj_part);
-                board.sprite_index = spr_board;
-                board.sprite_w = spr_board_w;
+                move_x = -1.6 * facing;
             }
+            else {
+                audio_play_sound(snd_skate, 0, false);
+                skate = true;
+                move_x = 2 * facing;
+                move_y = -0.5;
+                board_flash = 0;
+            }
+            canjump = false;
         }
-        else if (!place_free(x + facing, y)) {
+        else {
             audio_play_sound(snd_jump, 0, false);
             move_y = -1.6;
-            move_x = -1.6 * facing;
         }
-        else {
-            audio_play_sound(snd_skate, 0, false);
-            skate = true;
-            move_x = 2 * facing;
-            move_y = -0.5;
-            board_flash = 0;
-        }
-        canjump = false;
     }
-    else {
-        audio_play_sound(snd_jump, 0, false);
-        move_y = -1.6;
-    }
-}
-
-if (jump_released &amp;&amp; move_y &lt; 0)
-    move_y /= 2;
     
-if (place_free(x, y + 1))
-    grav = 0.1;
-else {
-    grav = 0;
-    canjump = true;
-}
-    
-move_y += grav;
-
-if (move_y &gt; 2)
-    move_y = 2;
-    
-ramp = false;
-    
-if (place_free(x + round(4 * move_x), y))
-    x += round(4 * move_x);
-/*else if (place_free(x + round(4 * move_x / sqrt(2)), y - round(4 * abs(move_x) / sqrt(2)))) {
-    ramp = true;
-    
-    x += round(4 * move_x / sqrt(2));
-    y -= round(4 * abs(move_x) / sqrt(2));
-}*/
-else {
-    move_contact_solid(90 - sign(move_x) * 90, round(move_x * 4));
-    if (skate) {
-        audio_play_sound(snd_lose_board, 0, false);
-        skate = false;
-        var board = instance_create(x, y, obj_part);
-        board.sprite_index = spr_board;
-        board.sprite_w = spr_board_w;
-    }
-    else
-        move_x = 0;
-}
-if (place_free(x, y + round(4 * move_y)))
-    y += round(4 * move_y);
-else {
-    move_contact_solid(180 + sign(move_y) * 90, round(move_y * 4));
-    move_y = 0;
-}
-
-//Animation
-
-skate_xp = skate_x;
-skate_yp = skate_y;
-skate_x = x - 13 * facing - 1;
-skate_y = y + 13;
-
-sprite = -1;
-sprite_w = -1;
-if (skate) {
-    var rail = instance_place(x, y + 1, obj_rail);
-
-    if (rail != noone &amp;&amp; rail.solid = true) {
-        audio_play_sound(snd_grind, 0, false);
+    if (jump_released &amp;&amp; move_y &lt; 0)
+        move_y /= 2;
         
-        instance_create(x - 3 * facing, y + 16, obj_spark);
+    if (place_free(x, y + 1))
+        grav = 0.1;
+    else {
+        grav = 0;
+        canjump = true;
+    }
         
-        skate_x = x - 12 * facing - 1;
-        skate_y = y + 17;
+    move_y += grav;
     
-        sprite = spr_boy_grind;
-        sprite_w = spr_boy_grind_w;
-    }
+    if (move_y &gt; 2)
+        move_y = 2;
+        
+    ramp = false;
+        
+    if (place_free(x + round(4 * move_x), y))
+        x += round(4 * move_x);
+    /*else if (place_free(x + round(4 * move_x / sqrt(2)), y - round(4 * abs(move_x) / sqrt(2)))) {
+        ramp = true;
+        
+        x += round(4 * move_x / sqrt(2));
+        y -= round(4 * abs(move_x) / sqrt(2));
+    }*/
     else {
-        sprite = spr_boy_skate;
-        sprite_w = spr_boy_skate_w;
-    }
-    
-    var trail = instance_create(skate_x, skate_y, obj_trail);
-    trail.xp = skate_xp;
-    trail.yp = skate_yp;
-}
-else {
-    if (place_free(x, y + 1)) {
-        if (move_y &gt; 0) {
-            sprite = spr_boy_fall;
-            sprite_w = spr_boy_fall_w;
+        move_contact_solid(90 - sign(move_x) * 90, round(move_x * 4));
+        if (skate) {
+            audio_play_sound(snd_lose_board, 0, false);
+            skate = false;
+            var board = instance_create(x, y, obj_part);
+            board.sprite_index = spr_board;
+            board.sprite_w = spr_board_w;
         }
-        else {
-            sprite = spr_boy_jump;
-            sprite_w = spr_boy_jump_w;
-        }
-    }
-    else if (round(move_x * 4) == 0) {
-        sprite = spr_boy;
-        sprite_w = spr_boy_w;
-    }
-    else {
-        sprite = spr_boy_run;
-        sprite_w = spr_boy_run_w;
-        if (ramp)
-            animate += abs(move_x) * 0.25 / sqrt(2);
         else
-            animate += abs(move_x) * 0.25;
+            move_x = 0;
+    }
+    if (place_free(x, y + round(4 * move_y)))
+        y += round(4 * move_y);
+    else {
+        move_contact_solid(180 + sign(move_y) * 90, round(move_y * 4));
+        move_y = 0;
+    }
+    
+    //Animation
+    
+    skate_xp = skate_x;
+    skate_yp = skate_y;
+    skate_x = x - 13 * facing - 1;
+    skate_y = y + 13;
+    
+    sprite = -1;
+    sprite_w = -1;
+    if (skate) {
+        var rail = instance_place(x, y + 1, obj_rail);
+    
+        if (rail != noone &amp;&amp; rail.solid = true) {
+            audio_play_sound(snd_grind, 0, false);
+            
+            instance_create(x - 3 * facing, y + 16, obj_spark);
+            
+            skate_x = x - 12 * facing - 1;
+            skate_y = y + 17;
+        
+            sprite = spr_boy_grind;
+            sprite_w = spr_boy_grind_w;
+        }
+        else {
+            sprite = spr_boy_skate;
+            sprite_w = spr_boy_skate_w;
+        }
+        
+        var trail = instance_create(skate_x, skate_y, obj_trail);
+        trail.xp = skate_xp;
+        trail.yp = skate_yp;
+    }
+    else {
+        if (place_free(x, y + 1)) {
+            if (move_y &gt; 0) {
+                sprite = spr_boy_fall;
+                sprite_w = spr_boy_fall_w;
+            }
+            else {
+                sprite = spr_boy_jump;
+                sprite_w = spr_boy_jump_w;
+            }
+        }
+        else if (round(move_x * 4) == 0) {
+            sprite = spr_boy;
+            sprite_w = spr_boy_w;
+        }
+        else {
+            sprite = spr_boy_run;
+            sprite_w = spr_boy_run_w;
+            if (ramp)
+                animate += abs(move_x) * 0.25 / sqrt(2);
+            else
+                animate += abs(move_x) * 0.25;
+        }
     }
 }
 </string>
