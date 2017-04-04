@@ -131,13 +131,13 @@ if (down_delay &gt; 0)
 if (up_pressed &amp;&amp; global.selected &gt; 0) {
     audio_play_sound(snd_select, 0, false);
     global.selected--;
-    up_delay = 15;
+    up_delay = 20;
 }
 
 if (down_pressed &amp;&amp; global.selected &lt; ds_list_size(level_list) - 1) {
     audio_play_sound(snd_select, 0, false);
     global.selected++;
-    down_delay = 15;
+    down_delay = 20;
 }
 
 if (up_held &amp;&amp; up_delay &lt;= 0 &amp;&amp; global.selected &gt; 0) {
