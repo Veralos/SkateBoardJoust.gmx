@@ -141,6 +141,7 @@
       <room>rooms\rm_arena</room>
       <room>rooms\rm_grind_intro</room>
       <room>rooms\rm_steps</room>
+      <room>rooms\rm_beam</room>
     </rooms>
   </rooms>
   <help>
