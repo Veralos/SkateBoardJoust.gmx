@@ -143,6 +143,9 @@
       <room>rooms\rm_steps</room>
       <room>rooms\rm_beam</room>
       <room>rooms\rm_leaps</room>
+      <room>rooms\rm_rails</room>
+      <room>rooms\rm_island</room>
+      <room>rooms\rm_roof</room>
     </rooms>
   </rooms>
   <help>
