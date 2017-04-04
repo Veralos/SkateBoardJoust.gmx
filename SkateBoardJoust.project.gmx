@@ -139,6 +139,8 @@
       <room>rooms\rm_intro</room>
       <room>rooms\rm_beams</room>
       <room>rooms\rm_arena</room>
+      <room>rooms\rm_grind_intro</room>
+      <room>rooms\rm_steps</room>
     </rooms>
   </rooms>
   <help>

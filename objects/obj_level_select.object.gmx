@@ -53,6 +53,8 @@ scr_add_level(rm_abyss, 60 * 12, 25000);
 scr_add_level(rm_void, 60 * 30, 20000);
 scr_add_level(rm_grind, 60 * 9, 25000);
 scr_add_level(rm_arena, 60 * 15, 38000);
+scr_add_level(rm_grind_intro, 60 * 7, 21000);
+scr_add_level(rm_steps, 60 * 14, 23000);
 
 global.selected = 0;
 
