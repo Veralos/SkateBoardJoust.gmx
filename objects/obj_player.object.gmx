@@ -204,6 +204,8 @@ if (skate) {
     if (place_free(x, y + round(4 * move_y)))
         y += round(4 * move_y);
     else {
+        if (move_y &gt; 0)
+            audio_play_sound(snd_land, 0, false);
         move_contact_solid(180 + sign(move_y) * 90, round(move_y * 4));
         move_y = 0;
     }

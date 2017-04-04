@@ -52,6 +52,7 @@ ds_list_add(sound_list, snd_grind);
 ds_list_add(sound_list, snd_score);
 ds_list_add(sound_list, snd_cancel);
 ds_list_add(sound_list, snd_pause);
+ds_list_add(sound_list, snd_land);
 
 ini_open("sbj_data");
 
@@ -70,7 +71,7 @@ ds_list_add(music_list, snd_fanfare);
 
 music_gain = clamp(ini_read_real("data", "music_gain", 1), 0, 1);
 scr_list_gain(music_list, music_gain);
-audio_sound_gain(snd_grind, 0.2 * sound_gain, 0);
+audio_sound_gain(snd_grind, 0.1 * sound_gain, 0);
 
 global.key_map = scr_generate_key_map();
 
@@ -211,7 +212,7 @@ if (confirm_pressed) {
             if (sound_gain &gt; 1)
                 sound_gain = 0;
             scr_list_gain(sound_list, sound_gain);
-            audio_sound_gain(snd_grind, 0.2 * sound_gain, 0);
+            audio_sound_gain(snd_grind, 0.1 * sound_gain, 0);
             alarm[0] = 1;
             break;
         case 4:
