@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.color1 = make_color_rgb(128, 128, 0);
+            <string>up_delay = 0;
+down_delay = 0;
+
+global.color1 = make_color_rgb(128, 128, 0);
 global.color2 = make_color_rgb(196, 196, 0);
 
 option_list = ds_list_create();
@@ -174,24 +177,47 @@ ini_close();
             <kind>1</kind>
             <string>var up_pressed = false;
 var down_pressed = false;
+var up_held = false;
+var down_held = false;
 var confirm_pressed = false;
 var quit_pressed = false;
 
 if (!scr_fading()) {
     up_pressed = keyboard_check_pressed(vk_up);
     down_pressed = keyboard_check_pressed(vk_down);
+    up_held = keyboard_check(vk_up);
+    down_held = keyboard_check(vk_down);
     confirm_pressed = keyboard_check_pressed(vk_enter);
     quit_pressed = keyboard_check_pressed(vk_escape);
 }
 
+if (up_delay &gt; 0)
+    up_delay--;
+if (down_delay &gt; 0)
+    down_delay--;
 
 if (up_pressed &amp;&amp; selected &gt; 0) {
     audio_play_sound(snd_select, 0, false);
     selected--;
+    up_delay = 20;
 }
+
 if (down_pressed &amp;&amp; selected &lt; ds_list_size(option_list) - 1) {
     audio_play_sound(snd_select, 0, false);
     selected++;
+    down_delay = 20;
+}
+
+if (up_held &amp;&amp; up_delay &lt;= 0 &amp;&amp; selected &gt; 0) {
+    audio_play_sound(snd_select, 0, false);
+    selected--;
+    up_delay = 5;
+}
+
+if (down_held &amp;&amp; down_delay &lt;= 0 &amp;&amp; selected &lt; ds_list_size(option_list) - 1) {
+    audio_play_sound(snd_select, 0, false);
+    selected++;
+    down_delay = 5;
 }
     
 if (confirm_pressed) {
