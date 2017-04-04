@@ -137,11 +137,12 @@
       <room>rooms\rm_void</room>
       <room>rooms\rm_grind</room>
       <room>rooms\rm_intro</room>
-      <room>rooms\rm_beams</room>
+      <room>rooms\rm_nobeams</room>
       <room>rooms\rm_arena</room>
       <room>rooms\rm_grind_intro</room>
       <room>rooms\rm_steps</room>
       <room>rooms\rm_beam</room>
+      <room>rooms\rm_leaps</room>
     </rooms>
   </rooms>
   <help>

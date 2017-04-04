@@ -58,7 +58,9 @@ scr_add_level(rm_grind, 60 * 9, 25000);
 scr_add_level(rm_arena, 60 * 15, 38000);
 scr_add_level(rm_grind_intro, 60 * 7, 21000);
 scr_add_level(rm_steps, 60 * 14, 23000);
-scr_add_level(rm_beam, 60 * 14, 27000);
+scr_add_level(rm_beam, 60 * 14, 28000);
+scr_add_level(rm_leaps, 60 * 16, 8000);
+scr_add_level(rm_nobeams, 60 * 11, 40000);
 
 global.selected = 0;
 
