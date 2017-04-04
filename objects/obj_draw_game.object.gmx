@@ -160,7 +160,7 @@ room_goto_next();
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="8" enumb="77">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -178,11 +178,12 @@ room_goto_next();
           <argument>
             <kind>1</kind>
             <string>if (surface_exists(game_surface)) {
-    if (window_get_fullscreen()) {
+    draw_surface_stretched(game_surface, 0, 0, window_get_width(), window_get_height());
+    /*if (window_get_fullscreen()) {
         draw_surface_stretched(game_surface, offset_x, offset_y, view_width * scale, view_height * scale);
     }
     else
-        draw_surface_stretched(game_surface, 0, 0, view_width * 2, view_height * 2);
+        draw_surface_stretched(game_surface, 0, 0, view_width * 2, view_height * 2);*/
 }
 </string>
           </argument>

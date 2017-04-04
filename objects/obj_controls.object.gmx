@@ -116,6 +116,7 @@ else {
         }
         
         if (valid) {
+            error_fade = 0;
             audio_play_sound(snd_confirm, 0, false);
             ds_list_replace(global.control_list, selected, pressed);
             new_key = false;
