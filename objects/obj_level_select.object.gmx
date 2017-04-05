@@ -165,11 +165,14 @@ if (down_held &amp;&amp; down_delay &lt;= 0 &amp;&amp; global.selected &lt; ds_l
 if (confirm_pressed) {
     if (global.selected &lt;= global.levels_completed) {
         audio_play_sound(snd_confirm, 0, false);
-        global.music = ds_list_find_value(music_list, global.selected mod ds_list_size(music_list));
-        if (global.selected &lt; ds_list_size(level_list))
+        if (global.selected &lt; ds_list_size(level_list)) {
+            global.music = ds_list_find_value(music_list, global.selected mod ds_list_size(music_list));
             scr_room_goto(ds_list_find_value(level_list, global.selected));
-        else
+        }
+        else {
+            global.music = snd_end_music;
             scr_room_goto(rm_end);
+        }
     }
     else
         audio_play_sound(snd_error, 0, false);

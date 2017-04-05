@@ -70,6 +70,7 @@ ds_list_add(music_list, snd_music2);
 ds_list_add(music_list, snd_music3);
 ds_list_add(music_list, snd_music4);
 ds_list_add(music_list, snd_music5);
+ds_list_add(music_list, snd_end_music);
 ds_list_add(music_list, snd_fanfare);
 
 music_gain = clamp(ini_read_real("data", "music_gain", 1), 0, 1);

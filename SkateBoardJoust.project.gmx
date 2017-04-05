@@ -12,6 +12,7 @@
       <sound>sound\snd_music3</sound>
       <sound>sound\snd_music4</sound>
       <sound>sound\snd_music5</sound>
+      <sound>sound\snd_end_music</sound>
       <sound>sound\snd_fanfare</sound>
     </sounds>
     <sounds name="sounds">
@@ -71,6 +72,7 @@
     </sprites>
     <sprite>sprites\spr_stopwatch</sprite>
     <sprite>sprites\spr_star</sprite>
+    <sprite>sprites\spr_boxart</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -90,6 +92,7 @@
     <font>fonts\fnt_title</font>
     <font>fonts\fnt_option</font>
     <font>fonts\fnt_tutorial</font>
+    <font>fonts\fnt_credits</font>
   </fonts>
   <objects name="objects">
     <objects name="game">
