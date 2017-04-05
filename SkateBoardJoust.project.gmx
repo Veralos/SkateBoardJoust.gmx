@@ -149,6 +149,8 @@
       <room>rooms\rm_sides</room>
       <room>rooms\rm_jumpoff</room>
       <room>rooms\rm_narrow</room>
+      <room>rooms\rm_down</room>
+      <room>rooms\rm_death_intro</room>
     </rooms>
   </rooms>
   <help>
