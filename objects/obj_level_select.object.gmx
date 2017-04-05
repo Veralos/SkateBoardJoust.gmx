@@ -41,34 +41,36 @@ global.pro_score_list = ds_list_create();
 
 scr_add_level(rm_intro, 60 * 6, 23000); //319
 scr_add_level(rm_test, 60 * 7, 18000); //336
+scr_add_level(rm_jumpoff, 60 * 6, 17000); //334
 scr_add_level(rm_flat, 60 * 5, 100000); //251
-scr_add_level(rm_waves, 60 * 8, 12000); //472
 scr_add_level(rm_ledges, 60 * 11, 14000); //586
-scr_add_level(rm_tall, 60 * 8, 13000); //416
 scr_add_level(rm_basin, 60 * 11, 17000); //574
 scr_add_level(rm_downhill, 60 * 9, 45000); //521
+scr_add_level(rm_waves, 60 * 8, 12000); //472
 scr_add_level(rm_bowl, 60 * 11, 41000); //569
-scr_add_level(rm_layers, 60 * 11, 24000); //582
-scr_add_level(rm_plat, 60 * 9, 19000); //427
-scr_add_level(rm_hills, 60 * 20, 14000); //1060
 scr_add_level(rm_plat2, 60 * 7, 29000); //408
-scr_add_level(rm_abyss, 60 * 12, 25000); //707
-scr_add_level(rm_void, 60 * 30, 20000); //1452
-scr_add_level(rm_grind, 60 * 9, 25000); //437
-scr_add_level(rm_arena, 60 * 15, 40000); //706
+
 scr_add_level(rm_grind_intro, 60 * 7, 21000); //386
-scr_add_level(rm_steps, 60 * 14, 23000); //794
-scr_add_level(rm_beam, 60 * 14, 28000); //733
-scr_add_level(rm_leaps, 60 * 16, 8000); //893
 scr_add_level(rm_nobeams, 60 * 11, 40000); //582
-scr_add_level(rm_rails, 60 * 5, 38000); //272
+scr_add_level(rm_hills, 60 * 20, 14000); //1060
+scr_add_level(rm_grind, 60 * 9, 25000); //437
+scr_add_level(rm_tall, 60 * 8, 13000); //416
+scr_add_level(rm_arena, 60 * 15, 40000); //706
+scr_add_level(rm_layers, 60 * 11, 24000); //582
 scr_add_level(rm_island, 60 * 12, 28000); //665
-scr_add_level(rm_roof, 60 * 9, 22000); //520
-scr_add_level(rm_sides, 60 * 17, 23000); //974
-scr_add_level(rm_jumpoff, 60 * 6, 17000); //334
-scr_add_level(rm_narrow, 60 * 4, 15000); //231
+scr_add_level(rm_abyss, 60 * 12, 25000); //707
 scr_add_level(rm_down, 60 * 10, 46000); //584
+
 scr_add_level(rm_death_intro, 60 * 9, 15000); //499
+scr_add_level(rm_roof, 60 * 9, 22000); //520
+scr_add_level(rm_plat, 60 * 9, 19000); //427
+scr_add_level(rm_rails, 60 * 5, 38000); //272
+scr_add_level(rm_sides, 60 * 17, 23000); //974
+scr_add_level(rm_leaps, 60 * 16, 8000); //893
+scr_add_level(rm_steps, 60 * 14, 23000); //794
+scr_add_level(rm_narrow, 60 * 4, 15000); //231
+scr_add_level(rm_void, 60 * 30, 20000); //1452
+scr_add_level(rm_beam, 60 * 14, 28000); //733
 
 global.selected = 0;
 
@@ -286,11 +288,11 @@ draw_set_halign(fa_center);
 
 if (global.selected &lt;= global.levels_completed) {
 
-    scr_draw_layered_text(title_x - 72, v_height * (2 / 5), "Best Time:#" + scr_time_string(ds_list_find_value(global.best_time_list, global.selected)), 1, global.color1, global.color2);
-    scr_draw_layered_text(title_x - 72, v_height * (3 / 5), "Best Score:#" + string(ds_list_find_value(global.best_score_list, global.selected)), 1, global.color1, global.color2);
+    scr_draw_layered_text(title_x + 72, v_height * (2 / 5), "Best Time:#" + scr_time_string(ds_list_find_value(global.best_time_list, global.selected)), 1, global.color1, global.color2);
+    scr_draw_layered_text(title_x + 72, v_height * (3 / 5), "Best Score:#" + string(ds_list_find_value(global.best_score_list, global.selected)), 1, global.color1, global.color2);
     
-    scr_draw_layered_text(title_x + 72, v_height * (2 / 5), "Expert Time:#" + scr_time_string(ds_list_find_value(global.pro_time_list, global.selected)), 1, global.color1, global.color2);
-    scr_draw_layered_text(title_x + 72, v_height * (3 / 5), "Expert Score:#" + string(ds_list_find_value(global.pro_score_list, global.selected)), 1, global.color1, global.color2);
+    scr_draw_layered_text(title_x - 72, v_height * (2 / 5), "Expert Time:#" + scr_time_string(ds_list_find_value(global.pro_time_list, global.selected)), 1, global.color1, global.color2);
+    scr_draw_layered_text(title_x - 72, v_height * (3 / 5), "Expert Score:#" + string(ds_list_find_value(global.pro_score_list, global.selected)), 1, global.color1, global.color2);
 
     draw_set_font(fnt_complete);
     scr_draw_layered_text(title_x, v_y + 48, "Level " + string(global.selected + 1), 2, global.color1, global.color2);
