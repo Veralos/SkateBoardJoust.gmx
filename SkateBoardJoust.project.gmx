@@ -146,6 +146,9 @@
       <room>rooms\rm_rails</room>
       <room>rooms\rm_island</room>
       <room>rooms\rm_roof</room>
+      <room>rooms\rm_sides</room>
+      <room>rooms\rm_jumpoff</room>
+      <room>rooms\rm_narrow</room>
     </rooms>
   </rooms>
   <help>
