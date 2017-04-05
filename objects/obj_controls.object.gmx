@@ -122,6 +122,9 @@ if (!new_key) {
     }
 }
 else {
+    up_delay = 20;
+    down_delay = 20;
+
     if (quit_pressed) {
         audio_play_sound(snd_cancel, 0, false);
         error_fade = 0;
