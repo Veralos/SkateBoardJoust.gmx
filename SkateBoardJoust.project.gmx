@@ -114,12 +114,14 @@
     <object>objects\obj_title</object>
     <object>objects\obj_controls</object>
     <object>objects\obj_fader</object>
+    <object>objects\obj_end</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_display</room>
     <room>rooms\rm_title</room>
     <room>rooms\rm_controls</room>
     <room>rooms\rm_level_select</room>
+    <room>rooms\rm_end</room>
     <rooms name="levels">
       <room>rooms\rm_test</room>
       <room>rooms\rm_plat</room>

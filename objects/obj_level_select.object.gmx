@@ -144,7 +144,7 @@ if (up_pressed &amp;&amp; global.selected &gt; 0) {
     up_delay = 20;
 }
 
-if (down_pressed &amp;&amp; global.selected &lt; ds_list_size(level_list) - 1) {
+if (down_pressed &amp;&amp; global.selected &lt; ds_list_size(level_list)) {
     audio_play_sound(snd_select, 0, false);
     global.selected++;
     down_delay = 20;
@@ -156,7 +156,7 @@ if (up_held &amp;&amp; up_delay &lt;= 0 &amp;&amp; global.selected &gt; 0) {
     up_delay = 5;
 }
 
-if (down_held &amp;&amp; down_delay &lt;= 0 &amp;&amp; global.selected &lt; ds_list_size(level_list) - 1) {
+if (down_held &amp;&amp; down_delay &lt;= 0 &amp;&amp; global.selected &lt; ds_list_size(level_list)) {
     audio_play_sound(snd_select, 0, false);
     global.selected++;
     down_delay = 5;
@@ -166,7 +166,10 @@ if (confirm_pressed) {
     if (global.selected &lt;= global.levels_completed) {
         audio_play_sound(snd_confirm, 0, false);
         global.music = ds_list_find_value(music_list, global.selected mod ds_list_size(music_list));
-        scr_room_goto(ds_list_find_value(level_list, global.selected));
+        if (global.selected &lt; ds_list_size(level_list))
+            scr_room_goto(ds_list_find_value(level_list, global.selected));
+        else
+            scr_room_goto(rm_end);
     }
     else
         audio_play_sound(snd_error, 0, false);
@@ -235,7 +238,7 @@ var v_height = view_hview[0];
 var draw_x = v_x + v_width * (3 / 4);
 var base_y = v_y + v_height / 2;
 
-for (var i = 0; i &lt; ds_list_size(level_list); i++) {
+for (var i = 0; i &lt;= ds_list_size(level_list); i++) {
     var draw_y = base_y + v_height / 8 * (i - global.selected);
     
     var draw_string;
@@ -250,21 +253,26 @@ for (var i = 0; i &lt; ds_list_size(level_list); i++) {
     else {
         draw_col1 = global.color1;
         draw_col2 = global.color2;
-        draw_string = "Level " + string(i + 1);
         
-        var time_index  = 0;
-        if (ds_list_find_value(global.best_time_list, i)  &lt; ds_list_find_value(global.pro_time_list, i))
-        time_index = 1;
-        
-        draw_sprite_ext(spr_stopwatch, time_index, draw_x + 72 + 1, draw_y + 1, 1, 1, 0, draw_col1, 1);
-        draw_sprite_ext(spr_stopwatch, time_index, draw_x + 72 - 1, draw_y - 1, 1, 1, 0, draw_col2, 1);
-        
-        var score_index  = 0;
-        if (ds_list_find_value(global.best_score_list, i) &gt; ds_list_find_value(global.pro_score_list, i))
-            score_index = 1;
-        
-        draw_sprite_ext(spr_star, score_index, draw_x + 96 + 1, draw_y + 1, 1, 1, 0, draw_col1, 1);
-        draw_sprite_ext(spr_star, score_index, draw_x + 96 - 1, draw_y - 1, 1, 1, 0, draw_col2, 1);
+        if (i &lt; ds_list_size(level_list)) {
+            draw_string = "Level " + string(i + 1);
+            
+            var time_index  = 0;
+            if (ds_list_find_value(global.best_time_list, i)  &lt; ds_list_find_value(global.pro_time_list, i))
+            time_index = 1;
+            
+            draw_sprite_ext(spr_stopwatch, time_index, draw_x + 72 + 1, draw_y + 1, 1, 1, 0, draw_col1, 1);
+            draw_sprite_ext(spr_stopwatch, time_index, draw_x + 72 - 1, draw_y - 1, 1, 1, 0, draw_col2, 1);
+            
+            var score_index  = 0;
+            if (ds_list_find_value(global.best_score_list, i) &gt; ds_list_find_value(global.pro_score_list, i))
+                score_index = 1;
+            
+            draw_sprite_ext(spr_star, score_index, draw_x + 96 + 1, draw_y + 1, 1, 1, 0, draw_col1, 1);
+            draw_sprite_ext(spr_star, score_index, draw_x + 96 - 1, draw_y - 1, 1, 1, 0, draw_col2, 1);
+        }
+        else
+            draw_string = "End";
     }
     
     if (i == global.selected)
@@ -287,15 +295,20 @@ scr_draw_layered_text(title_x + 96, v_height - 40, "Up/Down#Enter#Escape", 1, gl
 draw_set_halign(fa_center);
 
 if (global.selected &lt;= global.levels_completed) {
-
-    scr_draw_layered_text(title_x + 72, v_height * (2 / 5), "Best Time:#" + scr_time_string(ds_list_find_value(global.best_time_list, global.selected)), 1, global.color1, global.color2);
-    scr_draw_layered_text(title_x + 72, v_height * (3 / 5), "Best Score:#" + string(ds_list_find_value(global.best_score_list, global.selected)), 1, global.color1, global.color2);
+    if (global.selected &lt; ds_list_size(level_list)) {
+        scr_draw_layered_text(title_x + 72, v_height * (2 / 5), "Best Time:#" + scr_time_string(ds_list_find_value(global.best_time_list, global.selected)), 1, global.color1, global.color2);
+        scr_draw_layered_text(title_x + 72, v_height * (3 / 5), "Best Score:#" + string(ds_list_find_value(global.best_score_list, global.selected)), 1, global.color1, global.color2);
+        
+        scr_draw_layered_text(title_x - 72, v_height * (2 / 5), "Expert Time:#" + scr_time_string(ds_list_find_value(global.pro_time_list, global.selected)), 1, global.color1, global.color2);
+        scr_draw_layered_text(title_x - 72, v_height * (3 / 5), "Expert Score:#" + string(ds_list_find_value(global.pro_score_list, global.selected)), 1, global.color1, global.color2);
     
-    scr_draw_layered_text(title_x - 72, v_height * (2 / 5), "Expert Time:#" + scr_time_string(ds_list_find_value(global.pro_time_list, global.selected)), 1, global.color1, global.color2);
-    scr_draw_layered_text(title_x - 72, v_height * (3 / 5), "Expert Score:#" + string(ds_list_find_value(global.pro_score_list, global.selected)), 1, global.color1, global.color2);
-
-    draw_set_font(fnt_complete);
-    scr_draw_layered_text(title_x, v_y + 48, "Level " + string(global.selected + 1), 2, global.color1, global.color2);
+        draw_set_font(fnt_complete);
+        scr_draw_layered_text(title_x, v_y + 48, "Level " + string(global.selected + 1), 2, global.color1, global.color2);
+    }
+    else {
+        draw_set_font(fnt_complete);
+        scr_draw_layered_text(title_x, title_y, "End", 2, global.color1, global.color2);
+    }
 }
 else {
     draw_set_font(fnt_complete);
