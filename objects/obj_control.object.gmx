@@ -70,7 +70,7 @@ if (instance_number(obj_bat) &lt;= 0) {
         if (global.levels_completed &lt;= global.selected) {
             global.levels_completed++;
             
-            ini_open("sbj_data");
+            ini_open(global.filename);
             ini_write_real("data", "levels_completed", global.levels_completed);
             ini_close();
         }
@@ -78,7 +78,7 @@ if (instance_number(obj_bat) &lt;= 0) {
         if (time &lt; ds_list_find_value(global.best_time_list, global.selected)) {
             best_time = true;
             ds_list_replace(global.best_time_list, global.selected, time);
-            ini_open("sbj_data");
+            ini_open(global.filename);
             ini_write_real("time", "level" + string(global.selected + 1), time);
             ini_close();
         }
@@ -89,7 +89,7 @@ if (instance_number(obj_bat) &lt;= 0) {
         if (points &gt; ds_list_find_value(global.best_score_list, global.selected)) {
             best_score = true;
             ds_list_replace(global.best_score_list, global.selected, points);
-            ini_open("sbj_data");
+            ini_open(global.filename);
             ini_write_real("score", "level" + string(global.selected + 1), points);
             ini_close();
         }

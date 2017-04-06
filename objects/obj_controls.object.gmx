@@ -151,7 +151,7 @@ else {
             error_fade = 0;
             ds_list_replace(global.control_list, selected, pressed);
             new_key = false;
-            ini_open("sbj_data");
+            ini_open(global.filename);
             ini_write_real("controls", "key" + string(selected + 1), pressed);
             ini_close();
         }

@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ini_open("sbj_data");
+            <string>ini_open(global.filename);
 ini_write_real("data", "fullscreen", window_get_fullscreen());
 ini_close();
 </string>
@@ -138,6 +138,8 @@ view_surface_id[0] = game_surface;
             <kind>1</kind>
             <string>application_surface_draw_enable(false);
 
+global.filename = "sbj_data2";
+
 game_surface = -1;
 view_width = 512;
 view_height = 288;
@@ -150,7 +152,7 @@ while (view_width * (scale + 1) &lt; display_get_width() &amp;&amp; view_height 
 offset_x = (display_get_width() - view_width * scale) / 2;
 offset_y = (display_get_height() - view_height * scale) / 2;
 
-ini_open("sbj_data");
+ini_open(global.filename);
 window_set_fullscreen(ini_read_real("data", "fullscreen", false));
 ini_close();
 

@@ -57,7 +57,7 @@ ds_list_add(sound_list, snd_cancel);
 ds_list_add(sound_list, snd_pause);
 ds_list_add(sound_list, snd_land);
 
-ini_open("sbj_data");
+ini_open(global.filename);
 
 sound_gain = clamp(ini_read_real("data", "sound_gain", 1), 0, 1);
 scr_list_gain(sound_list, sound_gain);
@@ -126,7 +126,7 @@ ini_close();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ini_open("sbj_data");
+            <string>ini_open(global.filename);
 ini_write_real("data", "music_gain", music_gain);
 ini_close();
 </string>
@@ -151,7 +151,7 @@ ini_close();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ini_open("sbj_data");
+            <string>ini_open(global.filename);
 ini_write_real("data", "sound_gain", sound_gain);
 ini_close();
 </string>
